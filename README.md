@@ -8,6 +8,7 @@ config should look like this:
 {
   "clientId": "",
   "clientSecret": "",
-  "tenantId": ""
+  "tenantId": "",
+  "subscriptionId": ""
 }
 ```
