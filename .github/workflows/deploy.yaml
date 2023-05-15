@@ -12,6 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Check Azure CLI
+        run: |
+          az --version || echo "Azure CLI is not installed"
+
       - name: Azure Login
         uses: azure/login@v1
         with:
