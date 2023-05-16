@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Resources
 
 on:
   push:
@@ -11,12 +11,9 @@ jobs:
   #   steps:
   #     - name: Detect Resource Group File Changes
   #       run: echo "::set-output name=hasChanged::$(git diff)"
-  #     - name: Infra Deploy
-  #       run: |
-  #         deploymentName="rg_deployment_${{github.sha}}"
-  #         az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
+  #
 
-  Deploy:
+  Deploy Resources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
