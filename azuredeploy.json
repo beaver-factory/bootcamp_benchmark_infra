@@ -31,17 +31,29 @@
       }
     },
     {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2021-03-01",
+      "name": "helloworld12321",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Y1",
+        "tier": "Dynamic"
+      },
+      "properties": {}
+    },
+    {
       "name": "helloworld12321",
       "type": "Microsoft.Web/sites",
       "apiVersion": "2020-12-01",
       "location": "[resourceGroup().location]",
       "kind": "functionapp",
       "dependsOn": [
-        // "[resourceId('Microsoft.Web/serverfarms', 'serverFarmName')]",
+        "[resourceId('Microsoft.Insights/components', 'helloworld12321')]",
+        "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
         "[resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321')]"
       ],
       "properties": {
-        // "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'serverFarmName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
         "siteConfig": {
           "appSettings": [
             {
@@ -58,7 +70,7 @@
             },
             {
               "name": "WEBSITE_CONTENTSHARE",
-              "value": "[toLower('functionName')]"
+              "value": "[toLower('helloworld12321')]"
             },
             {
               "name": "FUNCTIONS_EXTENSION_VERSION",
