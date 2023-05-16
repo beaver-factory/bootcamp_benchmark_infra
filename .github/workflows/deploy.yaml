@@ -19,7 +19,7 @@ jobs:
 
       - name: Infra Deploy
         run: |
-          az deployment group create --resource-group bootcampBenchmarkResourceGroup --template-file azuredeploy.resourcegroup.json
+          az group deployment create --resource-group bootcampBenchmarkResourceGroup --template-file azuredeploy.resourcegroup.json
 
       - name: List Resource Groups
         run: |
