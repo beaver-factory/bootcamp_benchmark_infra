@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  list-groups:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,7 +20,7 @@ jobs:
       - name: Infra Deploy
         run: |
           deploymentName="rg_deployment_${{github.sha}}"
-          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location WestUK
+          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
 
       - name: List Resource Groups
         run: |
