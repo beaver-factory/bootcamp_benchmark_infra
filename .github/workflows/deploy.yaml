@@ -6,13 +6,6 @@ on:
       - main
 
 jobs:
-  # InfraDeploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Detect Resource Group File Changes
-  #       run: echo "::set-output name=hasChanged::$(git diff)"
-  #
-
   DeployResources:
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +16,10 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set url
+        run: |
+          az functionapp deployment source config --name helloworld12321 --resource-group bootcampBenchmarkResourceGroup --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main --manual-integration
 
       - name: List Resource Groups
         run: |
