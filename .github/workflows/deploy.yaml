@@ -30,13 +30,11 @@ jobs:
           az group list -o table
 
       - name: Deploy 
-        run: | 
+        run: |
           echo "${{github.sha}}"
           template_file = "./azuredeploy.json"
           deployment_name = "cd_deployment_${{github.sha}}"
 
-          az deployment group create \
-          --name $deployment_name \
-          --template-file $template_file
+          az deployment group create --name $deployment_name --template-file $template_file
 
 
