@@ -7,7 +7,7 @@ on:
     - '.github/workflows/deployrg.yaml'
 
 jobs:
-  Deploy Resource Group:
+  DeployResourceGroup:
     runs-on: ubuntu-latest
       steps:
         - name: Checkout code
