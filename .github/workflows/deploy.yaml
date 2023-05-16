@@ -24,3 +24,19 @@ jobs:
       - name: List Azure AD Groups
         run: |
           az ad group list --query "[].{name:displayName}" --output table
+
+      - name: List Resource Groups
+        run: |
+          az group list -o table
+
+      - name: Deploy 
+        run: | 
+          echo "${{github.sha}}"
+          template_file = "azuredeploy.json"
+          deployment_name = "cd_deployment_"${{github.sha}}
+
+          az deployment group create \
+          --name $deployment_name \
+          --template-file $template_file
+
+
