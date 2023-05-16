@@ -3,8 +3,8 @@ name: Deploy Resource Group
 on:
   push:
     paths:
-    - 'azuredeploy.resourcegroup.json'
-    - '.github/workflows/deployrg.yaml'
+      - 'azuredeploy.resourcegroup.json'
+      - '.github/workflows/deployrg.yaml'
 
 jobs:
   DeployResourceGroup:
@@ -19,6 +19,6 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Infra Deploy
-          run: |
-            deploymentName="rg_deployment_${{github.sha}}"
-            az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
+        run: |
+          deploymentName="rg_deployment_${{github.sha}}"
+          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
