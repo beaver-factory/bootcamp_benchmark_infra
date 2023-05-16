@@ -19,7 +19,7 @@ jobs:
 
       - name: Set url
         run: |
-          az functionapp deployment source config --name helloworld12321 --resource-group bootcampBenchmarkResourceGroup --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main --manual-integration
+          az functionapp deployment source config --name helloworld12321 --resource-group bootcampBenchmarkResourceGroup --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main --git-token ${{ secrets.GITHUB_TOKEN }}
 
       - name: List Resource Groups
         run: |
