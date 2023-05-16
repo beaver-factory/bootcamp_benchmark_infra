@@ -1,4 +1,4 @@
-name: Deploy 
+name: Deploy
 
 on:
   push:
@@ -19,17 +19,16 @@ jobs:
 
       - name: Infra Deploy
         run: |
-          az group deployment create --resource-group bootcampBenchmarkResourceGroup --template-file azuredeploy.resourcegroup.json
+          deploymentName="rg_deployment_${{github.sha}}"
+          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location WestUK
 
       - name: List Resource Groups
         run: |
           az group list -o table
 
-      - name: Deploy 
+      - name: Deploy
         run: |
           templateFile="./azuredeploy.json"
-          deploymentName="cd_deployment_${{github.sha}}"
+          deploymentName="resources_deployment_${{github.sha}}"
 
           az deployment group create --name $deploymentName --template-file $templateFile --resource-group bootcampBenchmarkResourceGroup
-
-
