@@ -39,22 +39,27 @@
         "name": "Y1",
         "tier": "Dynamic"
       },
-      "properties": {}
+      "properties": {
+        "reserved": true,
+        "computeMode": "Dynamic"
+      }
     },
     {
       "name": "helloworld12321",
       "type": "Microsoft.Web/sites",
       "apiVersion": "2020-12-01",
       "location": "[resourceGroup().location]",
-      "kind": "functionapp",
+      "kind": "functionapp, linux",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', 'helloworld12321')]",
         "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
         "[resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321')]"
       ],
       "properties": {
+        "reserved": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
         "siteConfig": {
+          "linuxFxVersion": "Python|3.8",
           "appSettings": [
             {
               "name": "AzureWebJobsDashboard",
