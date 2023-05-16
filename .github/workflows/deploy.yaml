@@ -18,12 +18,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Infra Deploy
-        uses: azure/arm-deploy@v1
-        with: 
-          scope: subscription 
-          subscriptionId: echo ${{ secrets.AZURE_CREDENTIALS }} | jq -r ".subscriptionId"
-          region: westuk
-          template: "./azuredeploy.resourcegroup.json"
+        run: |
+          az deployment group create --resource-group bootcampBenchmarkResourceGroup --template-file azuredeploy.resourcegroup.json
 
       - name: List Resource Groups
         run: |
