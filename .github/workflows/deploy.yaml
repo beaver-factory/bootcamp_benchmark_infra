@@ -6,6 +6,16 @@ on:
       - main
 
 jobs:
+  # InfraDeploy:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Detect Resource Group File Changes
+  #       run: echo "::set-output name=hasChanged::$(git diff)"
+  #     - name: Infra Deploy
+  #       run: |
+  #         deploymentName="rg_deployment_${{github.sha}}"
+  #         az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
+
   Deploy:
     runs-on: ubuntu-latest
     steps:
@@ -16,11 +26,6 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Infra Deploy
-        run: |
-          deploymentName="rg_deployment_${{github.sha}}"
-          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
 
       - name: List Resource Groups
         run: |
