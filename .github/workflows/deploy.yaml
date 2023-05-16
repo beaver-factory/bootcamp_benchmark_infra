@@ -1,4 +1,4 @@
-name: List Azure AD Groups
+name: Deploy 
 
 on:
   push:
@@ -12,18 +12,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check Azure CLI
-        run: |
-          az --version || echo "Azure CLI is not installed"
-
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: List Azure AD Groups
-        run: |
-          az ad group list --query "[].{name:displayName}" --output table
+      - name: Infra Deploy
+        uses: azure/arm-deploy@v1
+        with: 
+          scope: subscription 
+          subscriptionId: ${{ echo ${{ secrets.AZURE_CREDENTIALS }} | -r ".subscriptionId" }}
+          region: westuk
+          template: "./azuredeploy.resourcegroup.json"
 
       - name: List Resource Groups
         run: |
@@ -34,6 +34,6 @@ jobs:
           templateFile="./azuredeploy.json"
           deploymentName="cd_deployment_${{github.sha}}"
 
-          az deployment group create --name $deploymentName --template-file $templateFile
+          az deployment group create --name $deploymentName --template-file $templateFile --resource-group bootcampBenchmarkResourceGroup
 
 
