@@ -35,15 +35,15 @@
           "appSettings": [
             {
               "name": "AzureWebJobsDashboard",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
             },
             {
               "name": "AzureWebJobsStorage",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
             },
             {
               "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys('storageAccountID','2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
             },
             {
               "name": "WEBSITE_CONTENTSHARE",
