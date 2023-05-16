@@ -31,10 +31,9 @@ jobs:
 
       - name: Deploy 
         run: |
-          echo "${{github.sha}}"
-          template_file = "./azuredeploy.json"
-          deployment_name = "cd_deployment_${{github.sha}}"
+          templateFile="./azuredeploy.json"
+          deploymentName="cd_deployment_${{github.sha}}"
 
-          az deployment group create --name $deployment_name --template-file $template_file
+          az deployment group create --name $deploymentName --template-file $templateFile
 
 
