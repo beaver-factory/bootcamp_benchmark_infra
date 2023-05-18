@@ -2,7 +2,7 @@
 
 SECRET_NAME="AZURE_FUNCTIONAPP_PUBLISH_PROFILE"
 
-FILE="./current.PublishSettings"
+FILE="./profile.txt"
 
 if [ ! -f "$FILE" ]; then
     echo "Error: JSON file does not exist: $FILE"

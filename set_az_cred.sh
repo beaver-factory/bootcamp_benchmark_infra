@@ -2,7 +2,7 @@
 
 SECRET_NAME="AZURE_CREDENTIALS"
 
-JSON_FILE="./config.json"
+JSON_FILE="./creds.json"
 
 if [ ! -f "$JSON_FILE" ]; then
     echo "Error: JSON file does not exist: $JSON_FILE"
