@@ -5,10 +5,7 @@
     "StorageAccountName": {
       "type": "string"
     },
-    "BlobContainerName1": {
-      "type": "string"
-    },
-    "BlobContainerName2": {
+    "BlobContainerPrefix": {
       "type": "string"
     },
     "FunctionAppName": {
@@ -38,16 +35,7 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2018-03-01-preview",
-      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerName1'))]",
-      "dependsOn": ["[parameters('StorageAccountName')]"],
-      "properties": {
-        "publicAccess": "Container"
-      }
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-      "apiVersion": "2018-03-01-preview",
-      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerName2'), copyIndex())]",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerPrefix'), copyIndex())]",
       "dependsOn": ["[parameters('StorageAccountName')]"],
       "properties": {
         "publicAccess": "Container"
