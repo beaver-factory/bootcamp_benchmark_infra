@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/blob-storage
 
 jobs:
   DeployResources:
@@ -25,8 +26,13 @@ jobs:
         run: |
           templateFile="./azuredeploy.json"
           deploymentName="resources_deployment_${{github.sha}}"
+          paramsFile="./azuredeploy.parameters.json"
 
-          az deployment group create --name $deploymentName --template-file $templateFile --resource-group bootcampBenchmarkResourceGroup
+          az deployment group create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --resource-group bootcampBenchmarkResourceGroup \
+          --parameters $paramsFile
 
       - name: Set url
         run: |
@@ -35,7 +41,3 @@ jobs:
            --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main \
            --git-token ${{ secrets.GITHUB_TOKEN }} \
            --github-action true
-
-      - name: List functions
-        run: |
-          az functionapp function list --resource-group bootcampBenchmarkResourceGroup --name helloworld12321

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountName": {
+      "value": "helloworldstorage12321"
+    },
+    "BlobContainerPrefix": {
+      "value": "helloworldblob12321"
+    },
+    "BlobContainerTotal": {
+      "value": 3
+    },
+    "FunctionAppName": {
+      "value": "helloworld12321"
+    }
+  }
+}

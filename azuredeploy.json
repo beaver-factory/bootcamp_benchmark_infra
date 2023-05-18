@@ -1,16 +1,29 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+    "StorageAccountName": {
+      "type": "string"
+    },
+    "BlobContainerPrefix": {
+      "type": "string"
+    },
+    "FunctionAppName": {
+      "type": "string"
+    },
+    "BlobContainerTotal": {
+      "type": "int"
+    }
+  },
   "functions": [],
   "variables": {},
   "resources": [
     {
-      "name": "helloworldstorage12321",
+      "name": "[parameters('StorageAccountName')]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-04-01",
       "tags": {
-        "displayName": "helloworldstorage12321"
+        "displayName": "[parameters('StorageAccountName')]"
       },
       "location": "[resourceGroup().location]",
       "kind": "StorageV2",
@@ -20,9 +33,22 @@
       }
     },
     {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2018-03-01-preview",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerPrefix'), copyIndex())]",
+      "dependsOn": ["[parameters('StorageAccountName')]"],
+      "properties": {
+        "publicAccess": "Container"
+      },
+      "copy": {
+        "name": "blobLoop",
+        "count": "[parameters('BlobContainerTotal')]"
+      }
+    },
+    {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
-      "name": "helloworld12321",
+      "name": "[parameters('FunctionAppName')]",
       "location": "[resourceGroup().location]",
       "kind": "web",
       "properties": {
@@ -33,7 +59,7 @@
     {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2021-03-01",
-      "name": "helloworld12321",
+      "name": "[parameters('FunctionAppName')]",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "Y1",
@@ -45,37 +71,37 @@
       }
     },
     {
-      "name": "helloworld12321",
+      "name": "[parameters('FunctionAppName')]",
       "type": "Microsoft.Web/sites",
       "apiVersion": "2020-12-01",
       "location": "[resourceGroup().location]",
       "kind": "functionapp,linux",
       "dependsOn": [
-        "[resourceId('Microsoft.Insights/components', 'helloworld12321')]",
-        "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321')]"
+        "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
       "properties": {
         "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', 'helloworld12321')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
         "siteConfig": {
           "linuxFxVersion": "Python|3.8",
           "appSettings": [
             {
               "name": "AzureWebJobsDashboard",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
             },
             {
               "name": "AzureWebJobsStorage",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
             },
             {
               "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', 'helloworldstorage12321', ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', 'helloworldstorage12321'),'2015-05-01-preview').key1)]"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
             },
             {
               "name": "WEBSITE_CONTENTSHARE",
-              "value": "[toLower('helloworld12321')]"
+              "value": "[toLower(parameters('FunctionAppName'))]"
             },
             {
               "name": "FUNCTIONS_EXTENSION_VERSION",
@@ -83,7 +109,7 @@
             },
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-              "value": "[reference(resourceId('microsoft.insights/components/', 'helloworld12321'), '2015-05-01').InstrumentationKey]"
+              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FunctionAppName')), '2015-05-01').InstrumentationKey]"
             },
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
