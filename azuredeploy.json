@@ -132,7 +132,7 @@
     {
       "type": "Microsoft.DBforPostgreSQL/servers",
       "apiVersion": "2017-12-01-preview",
-      "name": "myPostgreSqlServer",
+      "name": "bootcampBenchmarkPostgreSQLServer-Staging",
       "location": "uksouth",
       "properties": {
         "administratorLogin": "[parameters('adminLogin')]",
@@ -157,7 +157,7 @@
           "apiVersion": "2017-12-01-preview",
           "name": "myPostgreSqlDatabase",
           "dependsOn": [
-            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'myPostgreSqlServer')]"
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'bootcampBenchmarkPostgreSQLServer-Staging')]"
           ]
         }
       ]
