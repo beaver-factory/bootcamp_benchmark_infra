@@ -13,6 +13,12 @@
     },
     "BlobContainerTotal": {
       "type": "int"
+    },
+    "adminLogin": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "string"
     }
   },
   "functions": [],
