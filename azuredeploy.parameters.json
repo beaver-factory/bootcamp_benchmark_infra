@@ -15,16 +15,10 @@
       "value": "helloworld12321"
     },
     "adminLogin": {
-      "value": "admin",
-      "metadata": {
-        "description": "The administrator username of the PostgreSQL Server."
-      }
+      "value": "admin"
     },
     "adminPassword": {
-      "value": "password123",
-      "metadata": {
-        "description": "The administrator password of the PostgreSQL Server."
-      }
+      "value": "password123"
     }
   }
 }
