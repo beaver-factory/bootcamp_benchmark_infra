@@ -131,7 +131,7 @@
     },
     {
       "type": "Microsoft.DBforPostgreSQL/servers",
-      "apiVersion": "2020-12-01",
+      "apiVersion": "2017-12-01-preview",
       "name": "myPostgreSqlServer",
       "location": "[resourceGroup().location]",
       "properties": {
@@ -154,7 +154,7 @@
       "resources": [
         {
           "type": "databases",
-          "apiVersion": "2020-12-01",
+          "apiVersion": "2017-12-01-preview",
           "name": "myPostgreSqlDatabase",
           "dependsOn": [
             "[resourceId('Microsoft.DBforPostgreSQL/servers', 'myPostgreSqlServer')]"
