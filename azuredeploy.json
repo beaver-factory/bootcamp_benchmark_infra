@@ -3,20 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "type": "string",
-      "defaultValue": "helloworldstorage12321"
+      "type": "string"
     },
     "BlobContainerName1": {
-      "type": "string",
-      "defaultValue": "hellobloba12321"
+      "type": "string"
     },
     "BlobContainerName2": {
-      "type": "string",
-      "defaultValue": "helloblobb12321"
+      "type": "string"
     },
     "FunctionAppName": {
-      "type": "string",
-      "defaultValue": "helloworld12321"
+      "type": "string"
+    },
+    "BlobContainerTotal": {
+      "type": "int"
     }
   },
   "functions": [],
@@ -48,10 +47,14 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2018-03-01-preview",
-      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerName2'))]",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerName2'), copyIndex())]",
       "dependsOn": ["[parameters('StorageAccountName')]"],
       "properties": {
         "publicAccess": "Container"
+      },
+      "copy": {
+        "name": "blobLoop",
+        "count": "[parameters('BlobContainerTotal')]"
       }
     },
     {
