@@ -3,13 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "helloworldstorage12321"
     },
     "FirstBlobContainerName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "helloblob12321"
     },
     "FunctionAppName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "helloworld12321"
     }
   },
   "functions": [],
