@@ -133,7 +133,7 @@
       "type": "Microsoft.DBforPostgreSQL/servers",
       "apiVersion": "2017-12-01-preview",
       "name": "myPostgreSqlServer",
-      "location": "[resourceGroup().location]",
+      "location": "uksouth",
       "properties": {
         "administratorLogin": "[parameters('adminLogin')]",
         "administratorLoginPassword": "[parameters('adminPassword')]",
