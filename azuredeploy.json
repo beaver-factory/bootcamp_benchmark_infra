@@ -145,11 +145,11 @@
           "geoRedundantBackup": "Disabled"
         },
         "createMode": "Default",
-        "publicNetworkAccess": "Enabled",
-        "sku": {
-          "name": "GP_Gen5_2",
-          "tier": "GeneralPurpose"
-        }
+        "publicNetworkAccess": "Enabled"
+      },
+      "sku": {
+        "name": "GP_Gen5_2",
+        "tier": "GeneralPurpose"
       },
       "resources": [
         {
