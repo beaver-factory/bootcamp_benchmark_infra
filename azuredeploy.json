@@ -137,7 +137,7 @@
       "properties": {
         "administratorLogin": "[parameters('adminLogin')]",
         "administratorLoginPassword": "[parameters('adminPassword')]",
-        "version": "12",
+        "version": "11",
         "sslEnforcement": "Enabled",
         "storageProfile": {
           "storageMB": 5120,
