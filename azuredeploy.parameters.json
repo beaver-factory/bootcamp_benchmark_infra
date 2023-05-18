@@ -15,10 +15,10 @@
       "value": "helloworld12321"
     },
     "adminLogin": {
-      "value": "admin"
+      "value": "bb_admin"
     },
     "adminPassword": {
-      "value": "password123"
+      "value": "bb_password123"
     }
   }
 }
