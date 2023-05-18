@@ -26,8 +26,13 @@ jobs:
         run: |
           templateFile="./azuredeploy.json"
           deploymentName="resources_deployment_${{github.sha}}"
+          paramsFile="./azuredeploy.parameters.json"
 
-          az deployment group create --name $deploymentName --template-file $templateFile --resource-group bootcampBenchmarkResourceGroup
+          az deployment group create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --resource-group bootcampBenchmarkResourceGroup \
+          --parameters $paramsFile
 
       - name: Set url
         run: |

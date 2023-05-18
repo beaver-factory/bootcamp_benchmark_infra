@@ -5,8 +5,11 @@
     "StorageAccountName": {
       "value": "helloworldstorage12321"
     },
-    "FirstBlobContainerName": {
-      "value": "helloworldblob12321"
+    "BlobContainerName1": {
+      "value": "helloworldbloba12321"
+    },
+    "BlobContainerName2": {
+      "value": "helloworldblobb12321"
     },
     "FunctionAppName": {
       "value": "helloworld12321"
