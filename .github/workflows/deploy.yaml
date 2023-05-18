@@ -41,7 +41,3 @@ jobs:
            --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main \
            --git-token ${{ secrets.GITHUB_TOKEN }} \
            --github-action true
-
-      - name: List functions
-        run: |
-          az functionapp function list --resource-group bootcampBenchmarkResourceGroup --name helloworld12321
