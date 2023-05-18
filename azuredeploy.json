@@ -122,6 +122,39 @@
           ]
         }
       }
+    },
+    {
+      "type": "Microsoft.DBforPostgreSQL/servers",
+      "apiVersion": "2020-12-01",
+      "name": "myPostgreSqlServer",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "administratorLogin": "[parameters('adminLogin')]",
+        "administratorLoginPassword": "[parameters('adminPassword')]",
+        "version": "12",
+        "sslEnforcement": "Enabled",
+        "storageProfile": {
+          "storageMB": 5120,
+          "backupRetentionDays": 7,
+          "geoRedundantBackup": "Disabled"
+        },
+        "createMode": "Default",
+        "publicNetworkAccess": "Enabled",
+        "sku": {
+          "name": "GP_Gen5_2",
+          "tier": "GeneralPurpose"
+        }
+      },
+      "resources": [
+        {
+          "type": "databases",
+          "apiVersion": "2020-12-01",
+          "name": "myPostgreSqlDatabase",
+          "dependsOn": [
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'myPostgreSqlServer')]"
+          ]
+        }
+      ]
     }
   ],
   "outputs": {}
