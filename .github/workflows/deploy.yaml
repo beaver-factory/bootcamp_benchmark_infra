@@ -34,10 +34,10 @@ jobs:
           --resource-group bootcampBenchmarkResourceGroup \
           --parameters $paramsFile
 
-      - name: Set url
-        run: |
-          az functionapp deployment source config \
-           --name helloworld12321 --resource-group bootcampBenchmarkResourceGroup \
-           --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main \
-           --git-token ${{ secrets.GITHUB_TOKEN }} \
-           --github-action true
+      # - name: Set url
+      #   run: |
+      #     az functionapp deployment source config \
+      #      --name helloworld12321 --resource-group bootcampBenchmarkResourceGroup \
+      #      --repo-url https://github.com/northcoders-dev/bootcamp_benchmark --branch main \
+      #      --git-token ${{ secrets.GITHUB_TOKEN }} \
+      #      --github-action true
