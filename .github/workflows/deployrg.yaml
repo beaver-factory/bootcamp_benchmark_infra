@@ -2,11 +2,11 @@ name: Deploy Resource Group
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "azuredeploy.resourcegroup.json"
       - ".github/workflows/deployrg.yaml"
-    tags-ignore:
-      - "**"
 
 jobs:
   DeployResourceGroup:
