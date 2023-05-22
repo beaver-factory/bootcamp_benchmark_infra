@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "azuredeploy.resourcegroup.json"
+      - "azuredeploy.resourcegroup.parameters.json"
       - ".github/workflows/deployrg.yaml"
 
 jobs:
@@ -23,7 +24,7 @@ jobs:
       - name: Infra Deploy
         run: |
           deploymentName="rg_deployment_${{github.sha}}"
-          paramsFile="./azuredeploy.parameters.json"
+          paramsFile="./azuredeploy.resourcegroup.parameters.json"
 
           templateFile="./azuredeploy.resourcegroup.json"
 
