@@ -1,0 +1,20 @@
+name: Deployment workflow
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: Deploy infrastructure
+        run: echo "Deploying version ${{ steps.get_version.outputs.VERSION }} to production"

@@ -21,14 +21,14 @@ echo -e "✅ Current branch is  'main'.\n"
 
 # # Check if main is up-to-date with remote
 
-# echo -e "• Checking if 'main' is up-to-date with remote:\n"
+echo -e "• Checking if 'main' is up-to-date with remote:\n"
 
-# git fetch origin main
+git fetch origin main
 
-# if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then
-#     echo "❌ 'main' is not up-to-date with remote. Please pull the latest changes."
-#     exit 1
-# fi
+if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then
+    echo "❌ 'main' is not up-to-date with remote. Please pull the latest changes."
+    exit 1
+fi
 
 # Get the most recent tag
 recent_tag=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null)
