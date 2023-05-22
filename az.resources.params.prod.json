@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountName": {
+      "value": "BBStorageAccount"
+    },
+    "BlobContainerPrefix": {
+      "value": "BBBlob"
+    },
+    "FunctionAppName": {
+      "value": "BBFunctionApp"
+    },
+    "BlobContainerTotal": {
+      "value": 3
+    },
+    "adminLogin": {
+      "value": "bb_admin"
+    },
+    "adminPassword": {
+      "value": "bb_password123"
+    }
+  }
+}

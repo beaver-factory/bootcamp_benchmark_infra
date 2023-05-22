@@ -26,7 +26,7 @@ jobs:
         run: |
           templateFile="./azuredeploy.json"
           deploymentName="resources_deployment_${{github.sha}}"
-          paramsFile="./azuredeploy.parameters.json"
+          paramsFile="./az.resources.params.staging.json"
 
           az deployment group create \
           --name $deploymentName \

@@ -23,9 +23,9 @@ jobs:
 
       - name: Deploy Resource Group
         run: |
-          deploymentName="rg_deployment_${{ steps.get_version.outputs.VERSION }}"
+          deploymentName="resource_group_${{ steps.get_version.outputs.VERSION }}"
 
-          templateFile="./azuredeploy.resourcegroup.json"
+          templateFile="./az.resourcegroup.template.json"
 
           paramsFile="./az.resourcegroup.params.prod.json"
 
@@ -33,4 +33,18 @@ jobs:
           --name $deploymentName \
           --template-file $templateFile \
           --location ukwest \
+          --parameters $paramsFile
+
+      - name: Deploy Resources
+        run: |
+          deploymentName="resources_${{ steps.get_version.outputs.VERSION }}"
+
+          templateFile="./az.resources.template.json"
+
+          paramsFile="./az.resources.params.prod.json"
+
+          az deployment group create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --resource-group bootcampBenchmarkResourceGroup \
           --parameters $paramsFile
