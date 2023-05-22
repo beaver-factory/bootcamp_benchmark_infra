@@ -12,10 +12,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Get the version
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Read version from tag
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
-      - name: Deploy infrastructure
+      - name: Deploy Resource Group
         run: |
-          echo "Deploying version ${{ steps.get_version.outputs.VERSION }} to production"
+          deploymentName="rg_deployment_${{ steps.get_version.outputs.VERSION }}"
+
+          templateFile="./azuredeploy.resourcegroup.json"
+
+          paramsFile="./az.resourcegroup.params.prod.json"
+
+          az deployment sub create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --location ukwest \
+          --parameters $paramsFile

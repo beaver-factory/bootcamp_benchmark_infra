@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - "azuredeploy.resourcegroup.json"
-      - "azuredeploy.resourcegroup.parameters.json"
+      - "az.resourcegroup.params.staging.json"
       - ".github/workflows/deployrg.yaml"
 
 jobs:
@@ -21,12 +21,13 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Infra Deploy
+      - name: Deploy Resource Group
         run: |
           deploymentName="rg_deployment_${{github.sha}}"
-          paramsFile="./azuredeploy.resourcegroup.parameters.json"
 
           templateFile="./azuredeploy.resourcegroup.json"
+
+          paramsFile="./az.resourcegroup.params.staging.json"
 
           az deployment sub create \
           --name $deploymentName \
