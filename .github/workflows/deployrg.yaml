@@ -5,6 +5,8 @@ on:
     paths:
       - "azuredeploy.resourcegroup.json"
       - ".github/workflows/deployrg.yaml"
+    tags-ignore:
+      - "**"
 
 jobs:
   DeployResourceGroup:
