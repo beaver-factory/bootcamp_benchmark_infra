@@ -1,12 +1,16 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+    "ResourceGroupName": {
+      "type": "string"
+    }
+  },
   "functions": [],
   "variables": {},
   "resources": [
     {
-      "name": "bootcampBenchmarkResourceGroup",
+      "name": "[parameters('ResourceGroupName')]",
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2022-09-01",
       "location": "ukwest",

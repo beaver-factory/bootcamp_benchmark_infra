@@ -23,4 +23,11 @@ jobs:
       - name: Infra Deploy
         run: |
           deploymentName="rg_deployment_${{github.sha}}"
-          az deployment sub create --name $deploymentName --template-file azuredeploy.resourcegroup.json --location ukwest
+          paramsFile="./azuredeploy.parameters.json"
+          templateFile="./azuredeploy.resourcegroup.json"
+
+          az deployment sub create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --location ukwest \
+          --parameters $paramsFile

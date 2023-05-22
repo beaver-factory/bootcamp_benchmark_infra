@@ -19,6 +19,9 @@
     },
     "adminPassword": {
       "value": "bb_password123"
+    },
+    "ResourceGroupName": {
+      "value": "bootcampBenchmarkResourceGroup"
     }
   }
 }
