@@ -1,11 +1,9 @@
-name: Deployment workflow
+name: Production Deployment Workflow
 
 on:
   push:
     tags:
       - "v*.*.*"
-    branches:
-      - main
 
 jobs:
   deploy:
