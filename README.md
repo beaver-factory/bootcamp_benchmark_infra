@@ -4,4 +4,5 @@
 
 ## publishing tags
 
-`make tag_patch` will publish a new tag with incrememnted patch version.
+`make tag v=patch`, `make tag v=minor` and `make tag v=major` will all publish new semver tags.
+https://semver.org/
