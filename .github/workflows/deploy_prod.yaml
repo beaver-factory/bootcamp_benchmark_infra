@@ -11,8 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
       - name: Deploy infrastructure
-        run: echo "Deploying version ${{ steps.get_version.outputs.VERSION }} to production"
+        run: |
+          echo "Deploying version ${{ steps.get_version.outputs.VERSION }} to production"

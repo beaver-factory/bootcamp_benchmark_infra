@@ -24,6 +24,7 @@ jobs:
         run: |
           deploymentName="rg_deployment_${{github.sha}}"
           paramsFile="./azuredeploy.parameters.json"
+
           templateFile="./azuredeploy.resourcegroup.json"
 
           az deployment sub create \
