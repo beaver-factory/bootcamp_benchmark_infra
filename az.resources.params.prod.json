@@ -3,22 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "bootcampbenchmarkstorageaccountprod"
+      "value": "bootcampbstorageaccprod"
     },
     "BlobContainerPrefix": {
-      "value": "bootcampbenchmarkblobprod"
+      "value": "bootcampbblobprod"
     },
     "FunctionAppName": {
-      "value": "bootcampbenchmarkfunctionappprod"
+      "value": "bootcampbfuncappprod"
     },
     "BlobContainerTotal": {
       "value": 3
     },
     "adminLogin": {
-      "value": "bootcampbenchmark_admin"
+      "value": "bootcampb_admin"
     },
     "adminPassword": {
-      "value": "bootcampbenchmark_password123"
+      "value": "bootcampb_password123"
     }
   }
 }
