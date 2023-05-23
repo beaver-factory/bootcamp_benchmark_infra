@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "bootcampbstorageaccstaging"
+      "value": "bootcampbstorageaccstag"
     },
     "BlobContainerPrefix": {
-      "value": "bootcampbblobstaging"
+      "value": "bootcampbblobstag"
     },
     "FunctionAppName": {
-      "value": "bootcampbfuncappstaging"
+      "value": "bootcampbfuncappstag"
     },
     "BlobContainerTotal": {
       "value": 3
