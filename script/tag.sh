@@ -30,6 +30,8 @@ if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then
     exit 1
 fi
 
+# Delete all local Git tags
+git tag -l | xargs git tag -d
 # Fetching all tags from remote repository
 echo "Fetching all tags from remote repository..."
 git fetch --tags
