@@ -19,6 +19,9 @@
     },
     "adminPassword": {
       "value": "bootcampb_password123"
+    },
+    "PostgresServerName": {
+      "value": "bootcampbpsqlserverprod"
     }
   }
 }

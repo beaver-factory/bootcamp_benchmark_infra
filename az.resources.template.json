@@ -19,6 +19,9 @@
     },
     "adminPassword": {
       "type": "string"
+    },
+    "PostgresServerName": {
+      "type": "string"
     }
   },
   "functions": [],
@@ -132,7 +135,7 @@
     {
       "type": "Microsoft.DBforPostgreSQL/servers",
       "apiVersion": "2017-12-01-preview",
-      "name": "bootcampBenchmarkPostgreSQLServer-Staging",
+      "name": "[parameters('PostgresServerName')]",
       "location": "uksouth",
       "properties": {
         "administratorLogin": "[parameters('adminLogin')]",
@@ -157,7 +160,7 @@
           "apiVersion": "2017-12-01-preview",
           "name": "myPostgreSqlDatabase",
           "dependsOn": [
-            "[resourceId('Microsoft.DBforPostgreSQL/servers', 'bootcampBenchmarkPostgreSQLServer-Staging')]"
+            "[resourceId('Microsoft.DBforPostgreSQL/servers', parameters('PostgresServerName'))]"
           ]
         }
       ]
