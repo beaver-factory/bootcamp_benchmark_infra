@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "helloworldstorage12321"
+      "value": "BBStorageAccountStaging"
     },
     "BlobContainerPrefix": {
-      "value": "helloworldblob12321"
+      "value": "BBBlobProdStaging"
+    },
+    "FunctionAppName": {
+      "value": "BBFunctionAppStaging"
     },
     "BlobContainerTotal": {
       "value": 3
-    },
-    "FunctionAppName": {
-      "value": "helloworld12321"
     },
     "adminLogin": {
       "value": "bb_admin"

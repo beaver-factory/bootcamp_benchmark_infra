@@ -1,4 +1,4 @@
-name: Production Deployment Workflow
+name: Production Infra Deployment Workflow
 
 on:
   push:
@@ -46,5 +46,5 @@ jobs:
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group bootcampBenchmarkResourceGroup \
+          --resource-group bootcampBenchmarkProduction \
           --parameters $paramsFile

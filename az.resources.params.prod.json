@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "StorageAccountName": {
-      "value": "BBStorageAccount"
+      "value": "BBStorageAccountProd"
     },
     "BlobContainerPrefix": {
-      "value": "BBBlob"
+      "value": "BBBlobProd"
     },
     "FunctionAppName": {
-      "value": "BBFunctionApp"
+      "value": "BBFunctionAppProd"
     },
     "BlobContainerTotal": {
       "value": 3

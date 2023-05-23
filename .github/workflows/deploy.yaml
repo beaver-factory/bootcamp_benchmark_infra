@@ -1,10 +1,9 @@
-name: Deploy Resources
+name: Staging Infra Deployment Workflow
 
 on:
   push:
     branches:
       - main
-      - feat/blob-storage
 
 jobs:
   DeployResources:
@@ -18,18 +17,30 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: List Resource Groups
+      - name: Deploy Resource Group
         run: |
-          az group list -o table
+          deploymentName="resource_group_${{github.sha}}"
 
-      - name: Deploy
+          templateFile="./az.resourcegroup.template.json"
+
+          paramsFile="./az.resourcegroup.params.staging.json"
+
+          az deployment sub create \
+          --name $deploymentName \
+          --template-file $templateFile \
+          --location ukwest \
+          --parameters $paramsFile
+
+      - name: Deploy Resources
         run: |
-          templateFile="./azuredeploy.json"
           deploymentName="resources_deployment_${{github.sha}}"
+
+          templateFile="./az.resources.template.json"
+
           paramsFile="./az.resources.params.staging.json"
 
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group bootcampBenchmarkResourceGroup \
+          --resource-group bootcampBenchmarkStaging \
           --parameters $paramsFile
