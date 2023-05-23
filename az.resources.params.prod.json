@@ -25,6 +25,9 @@
     },
     "PostgresServerName": {
       "value": "bootcampbpsqlserverprod"
+    },
+    "PostgresDBName": {
+      "value": "bootcampbpsqldbprod"
     }
   }
 }

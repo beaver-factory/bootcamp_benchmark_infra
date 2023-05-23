@@ -25,6 +25,9 @@
     },
     "PostgresServerName": {
       "type": "string"
+    },
+    "PostgresDBName": {
+      "type": "string"
     }
   },
   "functions": [],
@@ -132,6 +135,10 @@
               "value": "3.8"
             },
             {
+              "name": "PSQL_CONNECTIONSTRING",
+              "value": "[concat('dbname=',parameters('PostgresDBName'),' user=',parameters('adminLogin'),'@',parameters('PostgresServerName'),' host=',parameters('PostgresServerName'),'.postgres.database.azure.com password=',parameters('adminPassword'),' port=5432 sslmode=require')]"
+            },
+            {
               "name": "FunctionAppName",
               "value": "[parameters('FunctionAppName')]"
             },
@@ -173,7 +180,7 @@
         {
           "type": "databases",
           "apiVersion": "2017-12-01-preview",
-          "name": "myPostgreSqlDatabase",
+          "name": "[parameters('PostgresDBName')]",
           "dependsOn": [
             "[resourceId('Microsoft.DBforPostgreSQL/servers', parameters('PostgresServerName'))]"
           ]

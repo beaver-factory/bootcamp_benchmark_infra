@@ -25,6 +25,9 @@
     },
     "PostgresServerName": {
       "value": "bootcampbpsqlserverstag"
+    },
+    "PostgresDBName": {
+      "value": "bootcampbpsqldbstag"
     }
   }
 }
