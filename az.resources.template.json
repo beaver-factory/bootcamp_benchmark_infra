@@ -165,7 +165,7 @@
         "version": "11",
         "sslEnforcement": "Disabled",
         "storageProfile": {
-          "storageMB": 4096,
+          "storageMB": 5120,
           "backupRetentionDays": 7,
           "geoRedundantBackup": "Disabled"
         },
