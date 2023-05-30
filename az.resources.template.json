@@ -163,9 +163,9 @@
         "administratorLogin": "[parameters('adminLogin')]",
         "administratorLoginPassword": "[parameters('adminPassword')]",
         "version": "11",
-        "sslEnforcement": "Enabled",
+        "sslEnforcement": "Disabled",
         "storageProfile": {
-          "storageMB": 5120,
+          "storageMB": 4096,
           "backupRetentionDays": 7,
           "geoRedundantBackup": "Disabled"
         },
@@ -173,8 +173,8 @@
         "publicNetworkAccess": "Enabled"
       },
       "sku": {
-        "name": "GP_Gen5_2",
-        "tier": "GeneralPurpose"
+        "name": "B_Gen5_1",
+        "tier": "Basic"
       },
       "resources": [
         {
