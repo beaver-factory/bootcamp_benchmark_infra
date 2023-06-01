@@ -43,9 +43,6 @@
     },
     "SkuName": {
       "value": "standard"
-    },
-    "AdzunaAppKeySecretName": {
-      "value": "ADZUNA_APP_KEY"
     }
   }
 }
