@@ -36,6 +36,8 @@ jobs:
           --parameters $paramsFile
 
       - name: Deploy Resources
+        env: 
+          ADZUNA_APP_KEY: ${{secrets.ADZUNA_APP_KEY}}
         run: |
           deploymentName="resources_${{ steps.get_version.outputs.VERSION }}"
 
