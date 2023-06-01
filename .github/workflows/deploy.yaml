@@ -42,5 +42,5 @@ jobs:
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group bootcampBenchmarkStaging \
+          --resource-group bootcampBenchmarkTest \
           --parameters $paramsFile ADZUNA_APP_KEY=${{secrets.ADZUNA_APP_KEY}}
