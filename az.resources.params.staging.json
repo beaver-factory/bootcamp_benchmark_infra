@@ -6,13 +6,13 @@
       "value": "bootcampBenchmarkTest"
     },
     "StorageAccountName": {
-      "value": "bootcampbstorageaccstag"
+      "value": "bootcampbstorageacctest"
     },
     "BlobContainerPrefix": {
-      "value": "bootcampbblobstag"
+      "value": "bootcampbblobtest"
     },
     "FunctionAppName": {
-      "value": "bootcampbfuncappstag"
+      "value": "bootcampbfuncapptest"
     },
     "BlobContainerTotal": {
       "value": 3
@@ -24,13 +24,13 @@
       "value": "secret_password123"
     },
     "PostgresServerName": {
-      "value": "bootcampbpsqlserverstag"
+      "value": "bootcampbpsqlservertest"
     },
     "PostgresDBName": {
-      "value": "bootcampbpsqldbstag"
+      "value": "bootcampbpsqldbtest"
     },
     "KeyVaultName": {
-      "value": "bootcampbkeyvaultstag"
+      "value": "bootcampbkeyvaulttest"
     },
     "KeyVaultEnabledForDeployment": {
       "value": false
