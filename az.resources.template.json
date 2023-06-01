@@ -228,7 +228,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "apiVersion": "2021-11-01-preview",
-      "name": "adzunaAppKey",
+      "name": "[format('{0}/{1}','bootcampbkeyvaultstag', 'adzunaAppKey')]",
       "properties": {
         "value": ""
       },
