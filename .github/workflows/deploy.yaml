@@ -3,7 +3,7 @@ name: Staging Infra Deployment Workflow
 on:
   push:
     branches:
-      - main
+      - feat/key_vault
 
 jobs:
   DeployResources:
@@ -43,4 +43,4 @@ jobs:
           --name $deploymentName \
           --template-file $templateFile \
           --resource-group bootcampBenchmarkStaging \
-          --parameters $paramsFile
+          --parameters $paramsFile ADZUNA_APP_KEY=${{secrets.ADZUNA_APP_KEY}}
