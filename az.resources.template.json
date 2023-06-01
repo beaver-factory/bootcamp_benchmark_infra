@@ -28,6 +28,24 @@
     },
     "PostgresDBName": {
       "type": "string"
+    },
+    "KeyVaultName": {
+      "type": "string"
+    },
+    "KeyVaultEnabledForDeployment": {
+      "type": "bool"
+    },
+    "KeyVaultEnabledForDiskEncryption": {
+      "type": "bool"
+    },
+    "KeyVaultEnabledForTemplateDeployment": {
+      "type": "bool"
+    },
+    "SkuName": {
+      "type": "string"
+    },
+    "AdzunaAppKeySecretName": {
+      "type": "string"
     }
   },
   "functions": [],
@@ -185,6 +203,40 @@
             "[resourceId('Microsoft.DBforPostgreSQL/servers', parameters('PostgresServerName'))]"
           ]
         }
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[parameters('KeyVaultName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "enabledForDeployment": "[parameters('KeyVaultEnabledForDeployment')]",
+        "enabledForDiskEncryption": "[parameters('KeyVaultEnabledForDiskEncryption')]",
+        "enabledForTemplateDeployment": "[parameters('KeyVaultEnabledForTemplateDeployment')]",
+        "tenantId": "[subscription().tenantId]",
+        "enableSoftDelete": false,
+        "softDeleteRetentionInDays": 90,
+        "accessPolicies": [],
+        "sku": {
+          "name": "[parameters('SkuName')]",
+          "family": "A"
+        },
+        "networkAcls": {
+          "defaultAction": "Allow",
+          "bypass": "AzureServices"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[format('{0}/{1}', parameters('KeyVaultName'), parameters('AdzunaAppKeySecretName'))]",
+      "properties": {
+        "value": "[parameters('ADZUNA_APP_KEY')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('KeyVaultName'))]"
       ]
     }
   ],
