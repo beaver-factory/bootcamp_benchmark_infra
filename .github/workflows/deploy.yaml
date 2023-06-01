@@ -3,7 +3,7 @@ name: Staging Infra Deployment Workflow
 on:
   push:
     branches:
-      - feat/key_vault
+      - main
 
 jobs:
   DeployResources:
@@ -42,5 +42,15 @@ jobs:
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group bootcampBenchmarkTest \
-          --parameters $paramsFile ADZUNA_APP_KEY=${{secrets.ADZUNA_APP_KEY}}
+          --resource-group bootcampBenchmarkStaging \
+          --parameters $paramsFile
+
+      - name: Deploy Secrets to Key Vault
+        run: |
+          az keyvault secret set \
+          --name bootcampbkeyvaultstag/ADZUNA_APP_KEY \
+          --vault-name bootcampbkeyvaultstag \
+          --value ${{secrets.ADZUNA_APP_KEY}} \
+
+    
+       
