@@ -3,16 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ResourceGroupName": {
-      "value": "bootcampBenchmarkTest"
+      "value": "bootcampBenchmarkStaging"
     },
     "StorageAccountName": {
-      "value": "bootcampbstorageacctest"
+      "value": "bootcampbstorageaccstag"
     },
     "BlobContainerPrefix": {
-      "value": "bootcampbblobtest"
+      "value": "bootcampbblobstag"
     },
     "FunctionAppName": {
-      "value": "bootcampbfuncapptest"
+      "value": "bootcampbfuncappstag"
     },
     "BlobContainerTotal": {
       "value": 3
@@ -24,13 +24,13 @@
       "value": "secret_password123"
     },
     "PostgresServerName": {
-      "value": "bootcampbpsqlservertest"
+      "value": "bootcampbpsqlserverstag"
     },
     "PostgresDBName": {
-      "value": "bootcampbpsqldbtest"
+      "value": "bootcampbpsqldbstag"
     },
     "KeyVaultName": {
-      "value": "bootcampbkeyvaulttest"
+      "value": "bootcampbkeyvaultstag"
     },
     "KeyVaultEnabledForDeployment": {
       "value": false
