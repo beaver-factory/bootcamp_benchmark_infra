@@ -48,7 +48,7 @@ jobs:
       - name: Deploy Secrets to Key Vault
         run: |
           az keyvault secret set \
-          --name bootcampbkeyvaultstag/ADZUNA_APP_KEY \
+          --name adzunaAppKey \
           --vault-name bootcampbkeyvaultstag \
           --value ${{secrets.ADZUNA_APP_KEY}} \
 
