@@ -46,6 +46,9 @@
     },
     "AdzunaAppKeySecretName": {
       "type": "string"
+    },
+    "ADZUNA_APP_KEY": {
+      "type": "secureString"
     }
   },
   "functions": [],
