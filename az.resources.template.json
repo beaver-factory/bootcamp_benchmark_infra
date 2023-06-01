@@ -43,12 +43,6 @@
     },
     "SkuName": {
       "type": "string"
-    },
-    "AdzunaAppKeySecretName": {
-      "type": "string"
-    },
-    "ADZUNA_APP_KEY": {
-      "type": "secureString"
     }
   },
   "functions": [],
@@ -234,9 +228,8 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "apiVersion": "2021-11-01-preview",
-      "name": "[format('{0}/{1}', parameters('KeyVaultName'), parameters('AdzunaAppKeySecretName'))]",
+      "name": "[format('bootcampbkeyvaultstag/ADZUNA_APP_KEY')]",
       "properties": {
-        "value": "[parameters('ADZUNA_APP_KEY')]"
       },
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', parameters('KeyVaultName'))]"
