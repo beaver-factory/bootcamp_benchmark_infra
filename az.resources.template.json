@@ -214,7 +214,15 @@
         "tenantId": "[subscription().tenantId]",
         "enableSoftDelete": false,
         "softDeleteRetentionInDays": 90,
-        "accessPolicies": [],
+        "accessPolicies": [
+          {
+            "objectId": "29df6df3-3172-4ed3-950c-f24f0deeb9d8",
+            "tenantId": "[subscription().tenantId]",
+            "permissions": {
+                "secrets": ["set"]
+            }
+          }
+        ],
         "sku": {
           "name": "[parameters('SkuName')]",
           "family": "A"
