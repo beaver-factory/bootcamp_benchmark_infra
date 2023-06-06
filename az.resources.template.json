@@ -226,7 +226,7 @@
             "objectId": "2eb56317-1314-4fa0-b776-3b9e846c1be4",
             "tenantId": "[subscription().tenantId]",
             "permissions": {
-              "secrets": ["list"]
+              "secrets": ["list", "get"]
             }
           }
         ],
