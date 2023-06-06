@@ -250,6 +250,17 @@
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', parameters('KeyVaultName'))]"
       ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[format('{0}/{1}','bootcampbkeyvaultstag', 'adzunaAppId')]",
+      "properties": {
+        "value": ""
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('KeyVaultName'))]"
+      ]
     }
   ],
   "outputs": {}

@@ -52,5 +52,10 @@ jobs:
           --vault-name bootcampbkeyvaultstag \
           --value ${{secrets.ADZUNA_APP_KEY}} \
 
+          az keyvault secret set \
+          --name adzunaAppId \
+          --vault-name bootcampbkeyvaultstag \
+          --value ${{secrets.ADZUNA_APP_ID}} \
+
     
        
