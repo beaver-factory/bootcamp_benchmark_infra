@@ -231,6 +231,13 @@
             "permissions": {
               "secrets": ["list"]
             }
+          },
+          {
+            "objectId": "88a0b8c8-bfa7-4eba-952e-555e54b14f8f",
+            "tenantId": "[subscription().tenantId]",
+            "permissions": {
+              "secrets": ["get"]
+            }
           }
         ],
         "sku": {
