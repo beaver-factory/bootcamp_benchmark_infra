@@ -167,6 +167,10 @@
             {
               "name": "BlobContainerPrefix",
               "value": "[parameters('BlobContainerPrefix')]"
+            },
+            {
+              "name": "KeyVaultName",
+              "value": "[parameters('KeyVaultName')]"
             }
           ]
         }
