@@ -243,7 +243,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "apiVersion": "2021-11-01-preview",
-      "name": "[format('{0}/{1}','bootcampbkeyvaultstag', 'adzunaAppKey')]",
+      "name": "[format('{0}/{1}',parameters('KeyVaultName'), 'adzunaAppKey')]",
       "properties": {
         "value": ""
       },
@@ -254,7 +254,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "apiVersion": "2021-11-01-preview",
-      "name": "[format('{0}/{1}','bootcampbkeyvaultstag', 'adzunaAppId')]",
+      "name": "[format('{0}/{1}',parameters('KeyVaultName'), 'adzunaAppId')]",
       "properties": {
         "value": ""
       },
