@@ -111,6 +111,9 @@
         "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
+      "identity" : {
+        "type" : "SystemAssigned"
+      },
       "properties": {
         "reserved": true,
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
