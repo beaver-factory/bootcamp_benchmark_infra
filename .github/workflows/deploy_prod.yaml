@@ -36,8 +36,6 @@ jobs:
           --parameters $paramsFile
 
       - name: Deploy Resources
-        env: 
-          ADZUNA_APP_KEY: ${{secrets.ADZUNA_APP_KEY}}
         run: |
           deploymentName="resources_${{ steps.get_version.outputs.VERSION }}"
 
@@ -50,3 +48,15 @@ jobs:
           --template-file $templateFile \
           --resource-group bootcampBenchmarkProduction \
           --parameters $paramsFile
+
+      - name: Deploy Secrets to Key Vault
+        run: |
+          az keyvault secret set \
+          --name adzunaAppKey \
+          --vault-name bootcampbkeyvaultprod \
+          --value ${{secrets.ADZUNA_APP_KEY}} \
+
+          az keyvault secret set \
+          --name adzunaAppId \
+          --vault-name bootcampbkeyvaultprod \
+          --value ${{secrets.ADZUNA_APP_ID}} \
