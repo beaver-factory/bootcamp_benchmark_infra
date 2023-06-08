@@ -52,15 +52,6 @@
   "variables": {},
   "resources": [
     {
-      "type": "Microsoft.DBforPostgreSQL/servers/firewallRules",
-      "apiVersion": "2017-12-01",
-      "name": "internalAzureConnections",
-      "properties": {
-        "endIpAddress": "0.0.0.0",
-        "startIpAddress": "0.0.0.0"
-      }
-    },
-    {
       "name": "[parameters('StorageAccountName')]",
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2021-04-01",
@@ -227,6 +218,15 @@
           "dependsOn": [
             "[resourceId('Microsoft.DBforPostgreSQL/servers', parameters('PostgresServerName'))]"
           ]
+        },
+        {
+          "type": "firewallRules",
+          "apiVersion": "2017-12-01",
+          "name": "azureconnections",
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          }
         }
       ]
     },
