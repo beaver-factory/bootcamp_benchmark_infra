@@ -43,6 +43,9 @@
     },
     "SkuName": {
       "value": "standard"
+    },
+    "AppRegistrationSPObjectID": {
+        "value": "29df6df3-3172-4ed3-950c-f24f0deeb9d8" 
     }
   }
 }
