@@ -240,7 +240,7 @@
           //   }
           // },
           {
-            "objectId": "[resourceGroup().id]",
+            "objectId": "[resourceId('Microsoft.Web/sites', parameters('ResourceGroupName'))]",
             "tenantId": "[subscription().tenantId]",
             "permissions": {
               "secrets": ["get"]
