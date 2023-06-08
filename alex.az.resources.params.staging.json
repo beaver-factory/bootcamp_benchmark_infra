@@ -8,14 +8,14 @@
     "StorageAccountName": {
       "value": "bootcampbstorageaccstag2"
     },
-    "BlobContainerPrefix": {
-      "value": "bootcampbblobstag"
+    "BlobContainer1": {
+      "value": "rawblobcontainer"
+    },
+    "BlobContainer2": {
+      "value": "processedblobcontainer"
     },
     "FunctionAppName": {
       "value": "bootcampbfuncappstag2"
-    },
-    "BlobContainerTotal": {
-      "value": 3
     },
     "adminLogin": {
       "value": "bootcampb_admin"

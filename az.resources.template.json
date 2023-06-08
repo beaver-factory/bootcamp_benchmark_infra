@@ -8,14 +8,14 @@
     "StorageAccountName": {
       "type": "string"
     },
-    "BlobContainerPrefix": {
+    "BlobContainer1": {
+      "type": "string"
+    },
+    "BlobContainer2": {
       "type": "string"
     },
     "FunctionAppName": {
       "type": "string"
-    },
-    "BlobContainerTotal": {
-      "type": "int"
     },
     "adminLogin": {
       "type": "string"
@@ -44,7 +44,7 @@
     "SkuName": {
       "type": "string"
     },
-    "AppRegistrationSPObjectID" : {
+    "AppRegistrationSPObjectID": {
       "type": "string"
     }
   },
@@ -68,14 +68,19 @@
     {
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2018-03-01-preview",
-      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainerPrefix'), copyIndex())]",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainer1'))]",
       "dependsOn": ["[parameters('StorageAccountName')]"],
       "properties": {
         "publicAccess": "Container"
-      },
-      "copy": {
-        "name": "blobLoop",
-        "count": "[parameters('BlobContainerTotal')]"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2018-03-01-preview",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainer2'))]",
+      "dependsOn": ["[parameters('StorageAccountName')]"],
+      "properties": {
+        "publicAccess": "Container"
       }
     },
     {
@@ -114,8 +119,8 @@
         "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
-      "identity" : {
-        "type" : "SystemAssigned"
+      "identity": {
+        "type": "SystemAssigned"
       },
       "properties": {
         "reserved": true,
@@ -168,8 +173,12 @@
               "value": "[parameters('ResourceGroupName')]"
             },
             {
-              "name": "BlobContainerPrefix",
-              "value": "[parameters('BlobContainerPrefix')]"
+              "name": "BlobContainer1",
+              "value": "[parameters('BlobContainer1')]"
+            },
+            {
+              "name": "BlobContainer2",
+              "value": "[parameters('BlobContainer2')]"
             },
             {
               "name": "KeyVaultName",
@@ -229,7 +238,7 @@
             "objectId": "[parameters('AppRegistrationSPObjectID')]",
             "tenantId": "[subscription().tenantId]",
             "permissions": {
-                "secrets": ["set"]
+              "secrets": ["set"]
             }
           },
           // {
