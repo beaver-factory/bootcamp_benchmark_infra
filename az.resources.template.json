@@ -46,6 +46,9 @@
     },
     "AppRegistrationSPObjectID": {
       "type": "string"
+    },
+    "DevGroupObjId": {
+      "type": "string"
     }
   },
   "functions": [],
@@ -253,13 +256,13 @@
               "secrets": ["set"]
             }
           },
-          // {
-          //   "objectId": "2eb56317-1314-4fa0-b776-3b9e846c1be4", user group ID
-          //   "tenantId": "[subscription().tenantId]",
-          //   "permissions": {
-          //     "secrets": ["list", "get"]
-          //   }
-          // },
+          {
+            "objectId": "[parameters('DevGroupObjId')]",
+            "tenantId": "[subscription().tenantId]",
+            "permissions": {
+              "secrets": ["list", "get"]
+            }
+          },
           {
             "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('FunctionAppName')), '2019-08-01', 'full').identity.principalId]",
             "tenantId": "[subscription().tenantId]",
