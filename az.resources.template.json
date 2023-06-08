@@ -223,26 +223,26 @@
         "softDeleteRetentionInDays": 90,
         "accessPolicies": [
           {
-            "objectId": "29df6df3-3172-4ed3-950c-f24f0deeb9d8",
+            "objectId": "d451a45c-3527-4dff-967b-830e2faed849",
             "tenantId": "[subscription().tenantId]",
             "permissions": {
                 "secrets": ["set"]
             }
-          },
-          {
-            "objectId": "2eb56317-1314-4fa0-b776-3b9e846c1be4",
-            "tenantId": "[subscription().tenantId]",
-            "permissions": {
-              "secrets": ["list", "get"]
-            }
-          },
-          {
-            "objectId": "88a0b8c8-bfa7-4eba-952e-555e54b14f8f",
-            "tenantId": "[subscription().tenantId]",
-            "permissions": {
-              "secrets": ["get"]
-            }
           }
+          // {
+          //   "objectId": "2eb56317-1314-4fa0-b776-3b9e846c1be4",
+          //   "tenantId": "[subscription().tenantId]",
+          //   "permissions": {
+          //     "secrets": ["list", "get"]
+          //   }
+          // },
+          // {
+          //   "objectId": "88a0b8c8-bfa7-4eba-952e-555e54b14f8f",
+          //   "tenantId": "[subscription().tenantId]",
+          //   "permissions": {
+          //     "secrets": ["get"]
+          //   }
+          // }
         ],
         "sku": {
           "name": "[parameters('SkuName')]",

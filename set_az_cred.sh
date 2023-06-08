@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SECRET_NAME="AZURE_CREDENTIALS"
+SECRET_NAME="AZURE_CREDENTIALS_2"
 
 JSON_FILE="./creds.json"
 
@@ -11,7 +11,7 @@ fi
 
 GH_USER="northcoders-dev"
 
-GH_REPO="bootcamp_benchmark"
+GH_REPO="bootcamp_benchmark_infra"
 
 SECRET_VALUE=$(tr -d '\n' < "$JSON_FILE")
 

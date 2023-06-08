@@ -15,7 +15,7 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS_2 }}
 
       - name: Deploy Resource Group
         run: |
@@ -23,7 +23,7 @@ jobs:
 
           templateFile="./az.resourcegroup.template.json"
 
-          paramsFile="./az.resourcegroup.params.staging.json"
+          paramsFile="./alex.az.resourcegroup.params.staging.json"
 
           az deployment sub create \
           --name $deploymentName \
@@ -37,24 +37,24 @@ jobs:
 
           templateFile="./az.resources.template.json"
 
-          paramsFile="./az.resources.params.staging.json"
+          paramsFile="./alex.az.resources.params.staging.json"
 
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group bootcampBenchmarkStaging \
+          --resource-group alexBootcampBenchmarkStaging \
           --parameters $paramsFile
 
       - name: Deploy Secrets to Key Vault
         run: |
           az keyvault secret set \
           --name adzunaAppKey \
-          --vault-name bootcampbkeyvaultstag \
+          --vault-name bootcampbkeyvaultstag2 \
           --value ${{secrets.ADZUNA_APP_KEY}} \
 
           az keyvault secret set \
           --name adzunaAppId \
-          --vault-name bootcampbkeyvaultstag \
+          --vault-name bootcampbkeyvaultstag2 \
           --value ${{secrets.ADZUNA_APP_ID}} \
 
     
