@@ -261,7 +261,7 @@
           //   }
           // },
           {
-            "objectId": "49bbc1e4-4121-412c-a970-511ab5266068",
+            "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('FunctionAppName')), '2019-08-01', 'full').identity.principalId]",
             "tenantId": "[subscription().tenantId]",
             "permissions": {
               "secrets": ["get"]
