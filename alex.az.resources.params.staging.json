@@ -49,6 +49,9 @@
     },
     "DevGroupObjId": {
       "value": "a67a2672-8b1e-487a-8485-9076bf501ec1"
+    },
+    "TimeZone": {
+      "value": "Europe/London"
     }
   }
 }
