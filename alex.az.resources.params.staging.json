@@ -52,6 +52,39 @@
     },
     "TimeZone": {
       "value": "Europe/London"
+    },
+    "ExceptionAlertName": {
+      "value": "exceptionAlert"
+    },
+    "ExceptionAlertDescription": {
+      "value": "Alerts users when a function fails to run correctly (i.e when an exception is raised)"
+    },
+    "ExceptionAlertSeverity": {
+      "value": 1
+    },
+    "ExceptionAlertFrequency": {
+      "value": "PT15M"
+    },
+    "ExceptionAlertTimeWindow": {
+      "value": "PT15M"
+    },
+    "ExceptionAlertThreshold": {
+      "value": 0
+    },
+    "ExceptionActionGroupName": {
+      "value": "exceptionAlerts"
+    },
+    "ExceptionActionGroupShortName": {
+      "value": "excAlerts"
+    },
+    "ExceptionActionGroupEmails": {
+      "value": [
+        {
+          "name": "mattEmail",
+          "emailAddress": "matt.scarthsaunders@northcoders.com",
+          "useCommonAlertSchema": true
+        }
+      ]
     }
   }
 }

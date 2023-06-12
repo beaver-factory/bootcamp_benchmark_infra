@@ -52,6 +52,33 @@
     },
     "TimeZone": {
       "type": "string"
+    },
+    "ExceptionAlertName": {
+      "type": "string"
+    },
+    "ExceptionAlertDescription": {
+      "type": "string"
+    },
+    "ExceptionAlertSeverity": {
+      "type": "int"
+    },
+    "ExceptionAlertFrequency": {
+      "type": "string"
+    },
+    "ExceptionAlertTimeWindow": {
+      "type": "string"
+    },
+    "ExceptionAlertThreshold": {
+      "type": "int"
+    },
+    "ExceptionActionGroupName": {
+      "type": "string"
+    },
+    "ExceptionActionGroupShortName": {
+      "type": "string"
+    },
+    "ExceptionActionGroupEmails": {
+      "type": "array"
     }
   },
   "functions": [],
@@ -309,6 +336,50 @@
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', parameters('KeyVaultName'))]"
       ]
+    },
+    {
+      "type": "Microsoft.Insights/actionGroups",
+      "apiVersion": "2021-09-01",
+      "name": "[parameters('ExceptionActionGroupName')]",
+      "location": "Global",
+      "properties": {
+        "groupShortName": "[parameters('ExceptionActionGroupShortName')]",
+        "enabled": true,
+        "emailReceivers": "[parameters('ExceptionActionGroupEmails')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/metricAlerts",
+      "apiVersion": "2018-03-01",
+      "name": "[parameters('ExceptionAlertName')]",
+      "location": "global",
+      "properties": {
+        "description": "[parameters('ExceptionAlertDescription')]",
+        "severity": "[parameters('ExceptionAlertSeverity')]",
+        "enabled": true,
+        "scopes": "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]",
+        "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
+        "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
+        "criteria": {
+          "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+          "allOf": [
+            {
+              "name": "exceptionAlert",
+              "metricName": "Exceptions",
+              "dimensions": [],
+              "operator": "GreaterThan",
+              "threshold": "[parameters('ExceptionAlertThreshold')]",
+              "timeAggregation": "Count",
+              "criterionType": "StaticThresholdCriterion"
+            }
+          ]
+        },
+        "actions": [
+          {
+            "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
+          }
+        ]
+      }
     }
   ],
   "outputs": {}
