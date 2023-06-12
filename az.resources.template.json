@@ -345,7 +345,7 @@
       "properties": {
         "groupShortName": "[parameters('ExceptionActionGroupShortName')]",
         "enabled": true,
-        "emailReceivers": "[parameters('ExceptionActionGroupEmails')]"
+        "webhookReceivers": "[parameters('ExceptionActionGroupEmails')]"
       }
     },
     {
