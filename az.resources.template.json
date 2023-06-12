@@ -367,7 +367,7 @@
           "allOf": [
             {
               "name": "exceptionAlert",
-              "metricName": "Exceptions",
+              "metricName": "exception-count",
               "dimensions": [],
               "operator": "GreaterThan",
               "threshold": "[parameters('ExceptionAlertThreshold')]",
