@@ -357,7 +357,9 @@
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
-        "scopes": "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]",
+        "scopes": [
+          "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
+        ],
         "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
         "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
         "criteria": {
