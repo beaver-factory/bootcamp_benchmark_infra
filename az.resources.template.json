@@ -348,9 +348,44 @@
         "webhookReceivers": "[parameters('ExceptionActionGroupEmails')]"
       }
     },
+    // {
+    //   "type": "Microsoft.Insights/metricAlerts",
+    //   "apiVersion": "2018-03-01",
+    //   "name": "[parameters('ExceptionAlertName')]",
+    //   "location": "global",
+    //   "properties": {
+    //     "description": "[parameters('ExceptionAlertDescription')]",
+    //     "severity": "[parameters('ExceptionAlertSeverity')]",
+    //     "enabled": true,
+    //     "scopes": [
+    //       "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
+    //     ],
+    //     "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
+    //     "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
+    //     "criteria": {
+    //       "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+    //       "allOf": [
+    //         {
+    //           "name": "exceptionAlert",
+    //           "metricName": "exceptions/count",
+    //           "dimensions": [],
+    //           "operator": "GreaterThan",
+    //           "threshold": "[parameters('ExceptionAlertThreshold')]",
+    //           "timeAggregation": "Count",
+    //           "criterionType": "StaticThresholdCriterion"
+    //         }
+    //       ]
+    //     },
+    //     "actions": [
+    //       {
+    //         "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
+    //       }
+    //     ]
+    //   }
+    // },
     {
-      "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "type": "Microsoft.Insights/scheduledQueryRules",
+      "apiVersion": "2021-08-01",
       "name": "[parameters('ExceptionAlertName')]",
       "location": "global",
       "properties": {
@@ -363,24 +398,34 @@
         "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
         "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
         "criteria": {
-          "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
           "allOf": [
             {
-              "name": "exceptionAlert",
-              "metricName": "exceptions/count",
+              "query":  "
+                        union traces
+                        | union exceptions
+                        | where timestamp > ago(15m)
+                        | where operation_Name != ''
+                        | where type != ''
+                        | order by timestamp asc
+                        | project
+                          timestamp,
+                          message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])),
+                          logLevel = 'Error',
+                          operation_Name,
+                          type",
+              "metricMeasureColumn": "AggregatedValue",
               "dimensions": [],
               "operator": "GreaterThan",
               "threshold": "[parameters('ExceptionAlertThreshold')]",
-              "timeAggregation": "Count",
-              "criterionType": "StaticThresholdCriterion"
+              "timeAggregation": "Count"
             }
           ]
         },
-        "actions": [
-          {
-            "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
-          }
-        ]
+        "actions": {
+          "actionGroups": [
+            "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
+          ]
+        }
       }
     }
   ],
