@@ -216,10 +216,6 @@
             {
               "name": "KeyVaultName",
               "value": "[parameters('KeyVaultName')]"
-            },
-            {
-              "name": "WEBSITE_TIME_ZONE",
-              "value": "[parameters('TimeZone')]"
             }
           ]
         }
@@ -357,7 +353,6 @@
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
-        "autoMitigate": true,
         "scopes": [
           "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
         ],
@@ -387,7 +382,10 @@
         "actions": {
           "actionGroups": [
             "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
-          ]
+          ],
+          "muteActions": {
+            "duration": "PT15M"
+          }
         }
       }
     }
