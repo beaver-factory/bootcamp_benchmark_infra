@@ -411,7 +411,6 @@
                   logLevel = 'Error',
                   operation_Name,
                   type",
-              "metricMeasureColumn": "AggregatedValue",
               "dimensions": [],
               "operator": "GreaterThan",
               "threshold": "[parameters('ExceptionAlertThreshold')]",
