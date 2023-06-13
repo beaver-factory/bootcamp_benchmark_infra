@@ -85,19 +85,6 @@
           "useCommonAlertSchema": true
         }
       ]
-    },
-    "ExceptionQueryObj": {
-      "value": {
-        "query": "union traces | union exceptions| where timestamp > ago(15m) | where operation_Name != '' | where type != '' | order by timestamp asc | project timestamp, message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])), logLevel = 'Error', operation_Name, type",
-        "metricMeasureColumn": "AggregatedValue",
-        "dimensions": [],
-        "operator": "GreaterThan",
-        "name": "exceptionAlert",
-        "metricName": "exceptions/count",
-        "threshold": "[parameters('ExceptionAlertThreshold')]",
-        "timeAggregation": "Count",
-        "criterionType": "StaticThresholdCriterion"
-      }
     }
   }
 }
