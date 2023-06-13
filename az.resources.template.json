@@ -353,6 +353,7 @@
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
+        "muteActionsDuration": "PT15M",
         "scopes": [
           "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
         ],
@@ -382,10 +383,8 @@
         "actions": {
           "actionGroups": [
             "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
-          ],
-          "muteActions": {
-            "duration": "PT15M"
-          }
+          ]
+          
         }
       }
     }
