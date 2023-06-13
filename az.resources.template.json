@@ -354,6 +354,7 @@
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
         "muteActionsDuration": "PT15M",
+        "autoMitigate": false,
         "scopes": [
           "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
         ],
