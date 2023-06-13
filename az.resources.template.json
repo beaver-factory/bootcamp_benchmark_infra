@@ -387,7 +387,7 @@
       "type": "Microsoft.Insights/scheduledQueryRules",
       "apiVersion": "2021-08-01",
       "name": "[parameters('ExceptionAlertName')]",
-      "location": "global",
+      "location": "uksouth",
       "properties": {
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
@@ -400,19 +400,17 @@
         "criteria": {
           "allOf": [
             {
-              "query":  "
-                        union traces
-                        | union exceptions
-                        | where timestamp > ago(15m)
-                        | where operation_Name != ''
-                        | where type != ''
-                        | order by timestamp asc
-                        | project
-                          timestamp,
-                          message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])),
-                          logLevel = 'Error',
-                          operation_Name,
-                          type",
+              "query": "union traces
+                | union exceptions
+                | where timestamp > ago(15m)
+                | where operation_Name != ''
+                | where type != ''
+                | order by timestamp asc
+                | project timestamp,
+                  message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])),
+                  logLevel = 'Error',
+                  operation_Name,
+                  type",
               "metricMeasureColumn": "AggregatedValue",
               "dimensions": [],
               "operator": "GreaterThan",
