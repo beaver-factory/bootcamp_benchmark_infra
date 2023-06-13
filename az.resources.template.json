@@ -348,41 +348,6 @@
         "webhookReceivers": "[parameters('ExceptionActionGroupEmails')]"
       }
     },
-    // {
-    //   "type": "Microsoft.Insights/metricAlerts",
-    //   "apiVersion": "2018-03-01",
-    //   "name": "[parameters('ExceptionAlertName')]",
-    //   "location": "global",
-    //   "properties": {
-    //     "description": "[parameters('ExceptionAlertDescription')]",
-    //     "severity": "[parameters('ExceptionAlertSeverity')]",
-    //     "enabled": true,
-    //     "scopes": [
-    //       "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
-    //     ],
-    //     "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
-    //     "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
-    //     "criteria": {
-    //       "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
-    //       "allOf": [
-    //         {
-    //           "name": "exceptionAlert",
-    //           "metricName": "exceptions/count",
-    //           "dimensions": [],
-    //           "operator": "GreaterThan",
-    //           "threshold": "[parameters('ExceptionAlertThreshold')]",
-    //           "timeAggregation": "Count",
-    //           "criterionType": "StaticThresholdCriterion"
-    //         }
-    //       ]
-    //     },
-    //     "actions": [
-    //       {
-    //         "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', parameters('ExceptionActionGroupName'))]"
-    //       }
-    //     ]
-    //   }
-    // },
     {
       "type": "Microsoft.Insights/scheduledQueryRules",
       "apiVersion": "2021-08-01",
@@ -392,6 +357,7 @@
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
+        "autoMitigate": true,
         "scopes": [
           "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
         ],
