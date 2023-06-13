@@ -68,8 +68,17 @@
     "ExceptionAlertTimeWindow": {
       "value": "PT15M"
     },
+    "ExceptionAlertMuteDuration": {
+      "value": "PT15M"
+    },
     "ExceptionAlertThreshold": {
       "value": 0
+    },
+    "ExceptionAlertOperator": {
+      "value": "GreaterThan"
+    },
+    "ExceptionAlertTimeAgg": {
+      "value": "Count"
     },
     "ExceptionActionGroupName": {
       "value": "exceptionAlerts"

@@ -50,9 +50,6 @@
     "DevGroupObjId": {
       "type": "string"
     },
-    "TimeZone": {
-      "type": "string"
-    },
     "ExceptionAlertName": {
       "type": "string"
     },
@@ -68,8 +65,17 @@
     "ExceptionAlertTimeWindow": {
       "type": "string"
     },
+    "ExceptionAlertMuteDuration": {
+      "type": "string"
+    },
     "ExceptionAlertThreshold": {
       "type": "int"
+    },
+    "ExceptionAlertOperator": {
+      "type": "string"
+    },
+    "ExceptionAlertTimeAgg": {
+      "type": "string"
     },
     "ExceptionActionGroupName": {
       "type": "string"
@@ -353,7 +359,7 @@
         "description": "[parameters('ExceptionAlertDescription')]",
         "severity": "[parameters('ExceptionAlertSeverity')]",
         "enabled": true,
-        "muteActionsDuration": "PT15M",
+        "muteActionsDuration": "[parameters('ExceptionAlertMuteDuration')]",
         "autoMitigate": false,
         "scopes": [
           "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
@@ -375,9 +381,9 @@
                   operation_Name,
                   type",
               "dimensions": [],
-              "operator": "GreaterThan",
+              "operator": "[parameters('ExceptionAlertOperator')]",
               "threshold": "[parameters('ExceptionAlertThreshold')]",
-              "timeAggregation": "Count"
+              "timeAggregation": "[parameters('ExceptionAlertTimeAgg')]"
             }
           ]
         },
