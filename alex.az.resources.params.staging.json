@@ -17,6 +17,9 @@
     "FAInsightsName": {
       "value": "bb-insights-stag2"
     },
+    "FAServerFarmName": {
+      "value": "bb-serverfarm-stag2"
+    },
     "FunctionAppName": {
       "value": "bootcampbfuncappstag2"
     },

@@ -17,6 +17,9 @@
     "FAInsightsName": {
       "type": "string"
     },
+    "FAServerFarmName": {
+      "type": "string"
+    },
     "FunctionAppName": {
       "type": "string"
     },
@@ -148,7 +151,7 @@
     {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2021-03-01",
-      "name": "[parameters('FunctionAppName')]",
+      "name": "[parameters('FAServerFarmName')]",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "Y1",
@@ -167,7 +170,7 @@
       "kind": "functionapp,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
-        "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
       "identity": {
@@ -175,7 +178,7 @@
       },
       "properties": {
         "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "siteConfig": {
           "linuxFxVersion": "Python|3.8",
           "appSettings": [
@@ -247,7 +250,7 @@
       "kind": "functionapp,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
-        "[resourceId('Microsoft.Web/serverfarms', parameters('CollectorsFAName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
       "identity": {
@@ -255,7 +258,7 @@
       },
       "properties": {
         "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('CollectorsFAName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "siteConfig": {
           "linuxFxVersion": "Python|3.8",
           "appSettings": [
@@ -323,7 +326,7 @@
       "kind": "functionapp,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
-        "[resourceId('Microsoft.Web/serverfarms', parameters('ProcessorsFAName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
       "identity": {
@@ -331,7 +334,7 @@
       },
       "properties": {
         "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('ProcessorsFAName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "siteConfig": {
           "linuxFxVersion": "Python|3.8",
           "appSettings": [
@@ -399,7 +402,7 @@
       "kind": "functionapp,linux",
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
-        "[resourceId('Microsoft.Web/serverfarms', parameters('LoadersFAName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
       "identity": {
@@ -407,7 +410,7 @@
       },
       "properties": {
         "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('LoadersFAName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
         "siteConfig": {
           "linuxFxVersion": "Python|3.8",
           "appSettings": [
