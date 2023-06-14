@@ -14,8 +14,20 @@
     "BlobContainer2": {
       "value": "processedblobcontainer"
     },
+    "FAInsightsName": {
+      "value": "bb-insights-stag2"
+    },
     "FunctionAppName": {
       "value": "bootcampbfuncappstag2"
+    },
+    "CollectorsFAName": {
+      "value": "bb-collectors-stag2"
+    },
+    "ProcessorsFAName": {
+      "value": "bb-processors-stag2"
+    },
+    "LoadersFAName": {
+      "value": "bb-loaders-stag2"
     },
     "adminLogin": {
       "value": "bootcampb_admin"

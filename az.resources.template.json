@@ -14,7 +14,19 @@
     "BlobContainer2": {
       "type": "string"
     },
+    "FAInsightsName": {
+      "type": "string"
+    },
     "FunctionAppName": {
+      "type": "string"
+    },
+    "CollectorsFAName": {
+      "type": "string"
+    },
+    "ProcessorsFAName": {
+      "type": "string"
+    },
+    "LoadersFAName": {
       "type": "string"
     },
     "adminLogin": {
@@ -125,7 +137,7 @@
     {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
-      "name": "[parameters('FunctionAppName')]",
+      "name": "[parameters('FAInsightsName')]",
       "location": "[resourceGroup().location]",
       "kind": "web",
       "properties": {
@@ -154,7 +166,7 @@
       "location": "[resourceGroup().location]",
       "kind": "functionapp,linux",
       "dependsOn": [
-        "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]",
+        "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
         "[resourceId('Microsoft.Web/serverfarms', parameters('FunctionAppName'))]",
         "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
       ],
@@ -189,7 +201,7 @@
             },
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FunctionAppName')), '2015-05-01').InstrumentationKey]"
+              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FAInsightsName')), '2015-05-01').InstrumentationKey]"
             },
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -214,6 +226,230 @@
             {
               "name": "BlobContainer1",
               "value": "[parameters('BlobContainer1')]"
+            },
+            {
+              "name": "BlobContainer2",
+              "value": "[parameters('BlobContainer2')]"
+            },
+            {
+              "name": "KeyVaultName",
+              "value": "[parameters('KeyVaultName')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[parameters('CollectorsFAName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "kind": "functionapp,linux",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('CollectorsFAName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+      ],
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "reserved": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('CollectorsFAName'))]",
+        "siteConfig": {
+          "linuxFxVersion": "Python|3.8",
+          "appSettings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(parameters('CollectorsFAName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~4"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FAInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "python"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME_VERSION",
+              "value": "3.8"
+            },
+            {
+              "name": "CollectorsFAName",
+              "value": "[parameters('CollectorsFAName')]"
+            },
+            {
+              "name": "ResourceGroupName",
+              "value": "[parameters('ResourceGroupName')]"
+            },
+            {
+              "name": "BlobContainer1",
+              "value": "[parameters('BlobContainer1')]"
+            },
+            {
+              "name": "KeyVaultName",
+              "value": "[parameters('KeyVaultName')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[parameters('ProcessorsFAName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "kind": "functionapp,linux",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('ProcessorsFAName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+      ],
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "reserved": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('ProcessorsFAName'))]",
+        "siteConfig": {
+          "linuxFxVersion": "Python|3.8",
+          "appSettings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(parameters('ProcessorsFAName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~4"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FAInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "python"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME_VERSION",
+              "value": "3.8"
+            },
+            {
+              "name": "ProcessorsFAName",
+              "value": "[parameters('ProcessorsFAName')]"
+            },
+            {
+              "name": "ResourceGroupName",
+              "value": "[parameters('ResourceGroupName')]"
+            },
+            {
+              "name": "BlobContainer1",
+              "value": "[parameters('BlobContainer1')]"
+            },
+            {
+              "name": "BlobContainer2",
+              "value": "[parameters('BlobContainer2')]"
+            },
+            {
+              "name": "KeyVaultName",
+              "value": "[parameters('KeyVaultName')]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[parameters('LoadersFAName')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "location": "[resourceGroup().location]",
+      "kind": "functionapp,linux",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
+        "[resourceId('Microsoft.Web/serverfarms', parameters('LoadersFAName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+      ],
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "reserved": true,
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('LoadersFAName'))]",
+        "siteConfig": {
+          "linuxFxVersion": "Python|3.8",
+          "appSettings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(parameters('LoadersFAName'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~4"
+            },
+            {
+              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FAInsightsName')), '2015-05-01').InstrumentationKey]"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "python"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME_VERSION",
+              "value": "3.8"
+            },
+            {
+              "name": "PSQL_CONNECTIONSTRING",
+              "value": "[concat('dbname=',parameters('PostgresDBName'),' user=',parameters('adminLogin'),'@',parameters('PostgresServerName'),' host=',parameters('PostgresServerName'),'.postgres.database.azure.com password=',parameters('adminPassword'),' port=5432 sslmode=require')]"
+            },
+            {
+              "name": "LoadersFAName",
+              "value": "[parameters('LoadersFAName')]"
+            },
+            {
+              "name": "ResourceGroupName",
+              "value": "[parameters('ResourceGroupName')]"
             },
             {
               "name": "BlobContainer2",
@@ -362,7 +598,7 @@
         "muteActionsDuration": "[parameters('ExceptionAlertMuteDuration')]",
         "autoMitigate": false,
         "scopes": [
-          "[resourceId('Microsoft.Insights/components', parameters('FunctionAppName'))]"
+          "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]"
         ],
         "evaluationFrequency": "[parameters('ExceptionAlertFrequency')]",
         "windowSize": "[parameters('ExceptionAlertTimeWindow')]",
