@@ -66,7 +66,7 @@
       "value": "a67a2672-8b1e-487a-8485-9076bf501ec1"
     },
     "ExceptionAlertName": {
-      "value": "exceptionAlert"
+      "value": "bb-exceptionAlert-stag2"
     },
     "ExceptionAlertDescription": {
       "value": "Alerts users when a function fails to run correctly (i.e when an exception is raised)"
@@ -93,10 +93,10 @@
       "value": "Count"
     },
     "ExceptionActionGroupName": {
-      "value": "exceptionAlerts"
+      "value": "bb-exceptionAlertsGroup-stag2"
     },
     "ExceptionActionGroupShortName": {
-      "value": "excAlerts"
+      "value": "bb-eag-stag2"
     },
     "ExceptionActionGroupEmails": {
       "value": [
