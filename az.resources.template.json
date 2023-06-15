@@ -20,9 +20,6 @@
     "FAServerFarmName": {
       "type": "string"
     },
-    "FunctionAppName": {
-      "type": "string"
-    },
     "CollectorsFAName": {
       "type": "string"
     },
@@ -160,86 +157,6 @@
       "properties": {
         "reserved": true,
         "computeMode": "Dynamic"
-      }
-    },
-    {
-      "name": "[parameters('FunctionAppName')]",
-      "type": "Microsoft.Web/sites",
-      "apiVersion": "2020-12-01",
-      "location": "[resourceGroup().location]",
-      "kind": "functionapp,linux",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/components', parameters('FAInsightsName'))]",
-        "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
-        "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
-      ],
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "properties": {
-        "reserved": true,
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('FAServerFarmName'))]",
-        "siteConfig": {
-          "linuxFxVersion": "Python|3.8",
-          "appSettings": [
-            {
-              "name": "AzureWebJobsDashboard",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
-            },
-            {
-              "name": "AzureWebJobsStorage",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
-            },
-            {
-              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('StorageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName')),'2015-05-01-preview').key1)]"
-            },
-            {
-              "name": "WEBSITE_CONTENTSHARE",
-              "value": "[toLower(parameters('FunctionAppName'))]"
-            },
-            {
-              "name": "FUNCTIONS_EXTENSION_VERSION",
-              "value": "~4"
-            },
-            {
-              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-              "value": "[reference(resourceId('microsoft.insights/components/', parameters('FAInsightsName')), '2015-05-01').InstrumentationKey]"
-            },
-            {
-              "name": "FUNCTIONS_WORKER_RUNTIME",
-              "value": "python"
-            },
-            {
-              "name": "FUNCTIONS_WORKER_RUNTIME_VERSION",
-              "value": "3.8"
-            },
-            {
-              "name": "PSQL_CONNECTIONSTRING",
-              "value": "[concat('dbname=',parameters('PostgresDBName'),' user=',parameters('adminLogin'),'@',parameters('PostgresServerName'),' host=',parameters('PostgresServerName'),'.postgres.database.azure.com password=',parameters('adminPassword'),' port=5432 sslmode=require')]"
-            },
-            {
-              "name": "FunctionAppName",
-              "value": "[parameters('FunctionAppName')]"
-            },
-            {
-              "name": "ResourceGroupName",
-              "value": "[parameters('ResourceGroupName')]"
-            },
-            {
-              "name": "BlobContainer1",
-              "value": "[parameters('BlobContainer1')]"
-            },
-            {
-              "name": "BlobContainer2",
-              "value": "[parameters('BlobContainer2')]"
-            },
-            {
-              "name": "KeyVaultName",
-              "value": "[parameters('KeyVaultName')]"
-            }
-          ]
-        }
       }
     },
     {
@@ -540,13 +457,6 @@
             "tenantId": "[subscription().tenantId]",
             "permissions": {
               "secrets": ["list", "get"]
-            }
-          },
-          {
-            "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('FunctionAppName')), '2019-08-01', 'full').identity.principalId]",
-            "tenantId": "[subscription().tenantId]",
-            "permissions": {
-              "secrets": ["get"]
             }
           },
           {
