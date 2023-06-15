@@ -7,8 +7,8 @@ on:
 
 env:
   RESOURCE_GROUP_NAME: bootcampBenchmarkProduction
-  RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.prod.json"
-  RESOURCES_PARAMS_PATH: "./az.resources.params.prod.json"
+  RESOURCE_GROUP_PARAMS_PATH: '"./az.resourcegroup.params.prod.json"'
+  RESOURCES_PARAMS_PATH: '"./az.resources.params.prod.json"'
   KEY_VAULT_NAME: bootcampbkeyvaultprod
 
 jobs:
