@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+env:
+  RESOURCE_GROUP_NAME: alexBootcampBenchmarkStaging
+  RESOURCE_GROUP_PARAMS_PATH: "./alex.az.resourcegroup.params.staging.json"
+  RESOURCES_PARAMS_PATH: "./alex.az.resources.params.staging.json"
+  KEY_VAULT_NAME: bootcampbkeyvaultstag2
+
 jobs:
   DeployResources:
     runs-on: ubuntu-latest
@@ -23,13 +29,11 @@ jobs:
 
           templateFile="./az.resourcegroup.template.json"
 
-          paramsFile="./alex.az.resourcegroup.params.staging.json"
-
           az deployment sub create \
           --name $deploymentName \
           --template-file $templateFile \
           --location ukwest \
-          --parameters $paramsFile
+          --parameters ${{ env.RESOURCE_GROUP_PARAMS_PATH }}
 
       - name: Deploy Resources
         run: |
@@ -37,24 +41,22 @@ jobs:
 
           templateFile="./az.resources.template.json"
 
-          paramsFile="./alex.az.resources.params.staging.json"
-
           az deployment group create \
           --name $deploymentName \
           --template-file $templateFile \
-          --resource-group alexBootcampBenchmarkStaging \
-          --parameters $paramsFile
+          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
+          --parameters ${{ env.RESOURCE_PARAMS_PATH }}
 
       - name: Deploy Secrets to Key Vault
         run: |
           az keyvault secret set \
           --name adzunaAppKey \
-          --vault-name bootcampbkeyvaultstag2 \
+          --vault-name ${{ env.KEY_VAULT_NAME }} \
           --value ${{secrets.ADZUNA_APP_KEY}} \
 
           az keyvault secret set \
           --name adzunaAppId \
-          --vault-name bootcampbkeyvaultstag2 \
+          --vault-name ${{ env.KEY_VAULT_NAME }} \
           --value ${{secrets.ADZUNA_APP_ID}} \
 
     
