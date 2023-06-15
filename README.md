@@ -1,6 +1,6 @@
 # Bootcamp Benchmark
 
-## Seting Up Staging
+## Setting Up Staging
 
 In order to create your own deployed resource group and resources, follow these steps:
 1. Create a free Azure account,
