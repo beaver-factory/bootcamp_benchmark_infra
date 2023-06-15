@@ -13,7 +13,7 @@ In order to create your own deployed resource group and resources, follow these 
   - `AppRegistrationSPObjectID` should be taken from the portal, note: this is the App Registration Service Principal Object ID and not the App Registration Object ID.
   `DevGroupObjId` is also taken from the portal for the user group set up in step 2,
 7. Update the environment variables in `deploy.yaml` accordingly,
-7. Pushing to `main` should trigger `deploy.yaml` and both the resourge group and resources should then be visible in the Azure portal. 
+8. Pushing to `main` should trigger `deploy.yaml` and both the resource group and resources should then be visible in the Azure portal. 
 
 
 `make creds` and `make profile`: each set github secrets for this repo
