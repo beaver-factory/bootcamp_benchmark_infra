@@ -33,7 +33,7 @@ jobs:
           --name $deploymentName \
           --template-file $templateFile \
           --location ukwest \
-          --parameters ${{ env.RESOURCE_GROUP_PARAMS_PATH }}
+          --parameters $${{ env.RESOURCE_GROUP_PARAMS_PATH }}
 
       - name: Deploy Resources
         run: |
@@ -45,7 +45,7 @@ jobs:
           --name $deploymentName \
           --template-file $templateFile \
           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
-          --parameters ${{ env.RESOURCE_PARAMS_PATH }}
+          --parameters $${{ env.RESOURCE_PARAMS_PATH }}
 
       - name: Deploy Secrets to Key Vault
         run: |
