@@ -7,8 +7,8 @@ on:
 
 env:
   RESOURCE_GROUP_NAME: alexBootcampBenchmarkStaging
-  RESOURCE_GROUP_PARAMS_PATH: "./alex.az.resourcegroup.params.staging.json"
-  RESOURCES_PARAMS_PATH: "./alex.az.resources.params.staging.json"
+  RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.staging.json"
+  RESOURCES_PARAMS_PATH: "./az.resources.params.staging.json"
 
 jobs:
   DeployResources:

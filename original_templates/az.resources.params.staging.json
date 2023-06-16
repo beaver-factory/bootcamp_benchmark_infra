@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ResourceGroupName": {
+      "value": "bootcampBenchmarkStaging"
+    },
+    "StorageAccountName": {
+      "value": "bootcampbstorageaccstag"
+    },
+    "BlobContainerPrefix": {
+      "value": "bootcampbblobstag"
+    },
+    "FunctionAppName": {
+      "value": "bootcampbfuncappstag"
+    },
+    "BlobContainerTotal": {
+      "value": 3
+    },
+    "adminLogin": {
+      "value": "bootcampb_admin"
+    },
+    "adminPassword": {
+      "value": "secret_password123"
+    },
+    "PostgresServerName": {
+      "value": "bootcampbpsqlserverstag"
+    },
+    "PostgresDBName": {
+      "value": "bootcampbpsqldbstag"
+    },
+    "KeyVaultName": {
+      "value": "bootcampbkeyvaultstag"
+    },
+    "KeyVaultEnabledForDeployment": {
+      "value": false
+    },
+    "KeyVaultEnabledForDiskEncryption": {
+      "value": false
+    },
+    "KeyVaultEnabledForTemplateDeployment": {
+      "value": false
+    },
+    "SkuName": {
+      "value": "standard"
+    },
+    "AppRegistrationSPObjectID": {
+        "value": "29df6df3-3172-4ed3-950c-f24f0deeb9d8" 
+    }
+  }
+}
