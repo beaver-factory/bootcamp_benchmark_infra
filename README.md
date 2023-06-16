@@ -18,7 +18,7 @@ In order to create your own deployed resource group and resources, follow these 
 
 `make creds` and `make profile`: each set github secrets for this repo
 
-## publishing tags
+## Publishing tags
 
 `make tag v=patch`, `make tag v=minor` and `make tag v=major` will all publish new semver tags.
 https://semver.org/
