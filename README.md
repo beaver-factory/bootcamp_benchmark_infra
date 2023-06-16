@@ -54,5 +54,9 @@ Alerts and Action groups have most of their settings defined in the params file,
 
 The current setup for the alert is a 15 minute window (param: `"ExceptionAlertTimeWindow"`) checked every 15 minutes (param: `"ExceptionAlertFrequency"`). If an alert occurs, it will not trigger again for another 15 minutes (param: `"ExceptionAlertMuteDuration"`).
 
+## Publish Profile
 
+`make profile` takes a publish profile (secret value per function app taken from the portal) saved locally in profile.txt and adds it to gh secrets for the infra repo - it is needed in the function app deployments. 
+
+As we now have multiple function apps, the publish profile is captured via an `az` CLI command in their deployment workflows and therefore this make command is currently not needed but may be useful again in the future. 
 
