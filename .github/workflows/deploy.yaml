@@ -9,7 +9,6 @@ env:
   RESOURCE_GROUP_NAME: alexBootcampBenchmarkStaging
   RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.staging.json"
   RESOURCES_PARAMS_PATH: "./az.resources.params.staging.json"
-  KEY_VAULT_NAME: bootcampbkeyvaultstag2
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS_2 }}
 
 
@@ -48,15 +47,3 @@ jobs:
           --template-file $templateFile \
           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
           --parameters ${{ env.RESOURCES_PARAMS_PATH }}
-      
-      - name: Deploy Secrets to Key Vault
-        run: |
-          az keyvault secret set \
-          --name adzunaAppKey \
-          --vault-name ${{ env.KEY_VAULT_NAME }} \
-          --value ${{ secrets.ADZUNA_APP_KEY }} \
-
-          az keyvault secret set \
-          --name adzunaAppId \
-          --vault-name ${{ env.KEY_VAULT_NAME }} \
-          --value ${{ secrets.ADZUNA_APP_ID }} \ 
