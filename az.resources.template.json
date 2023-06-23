@@ -14,6 +14,9 @@
     "BlobContainer2": {
       "type": "string"
     },
+    "BlobContainer3": {
+      "type": "string"
+    },
     "FAInsightsName": {
       "type": "string"
     },
@@ -129,6 +132,15 @@
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2018-03-01-preview",
       "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainer2'))]",
+      "dependsOn": ["[parameters('StorageAccountName')]"],
+      "properties": {
+        "publicAccess": "Container"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2018-03-01-preview",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainer3'))]",
       "dependsOn": ["[parameters('StorageAccountName')]"],
       "properties": {
         "publicAccess": "Container"

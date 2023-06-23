@@ -14,6 +14,9 @@
     "BlobContainer2": {
       "value": "processedblobcontainer"
     },
+    "BlobContainer3": {
+      "value": "dictionaryblobcontainer"
+    },
     "FAInsightsName": {
       "value": "bb-insights-prod2"
     },
