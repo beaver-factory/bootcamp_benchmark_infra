@@ -68,7 +68,7 @@ jobs:
       
       - name: Add Util Files to Blob Storage
         run: |
-          skillDictionaryFilePath="./utils/skills_dict.json"
+          skillDictionaryFilePath="./utils/skills_dict_base.json"
 
             az storage blob upload \
             --file $skillDictionaryFilePath \
