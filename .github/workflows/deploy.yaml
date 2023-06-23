@@ -11,7 +11,7 @@ env:
   RESOURCES_PARAMS_PATH: "./az.resources.params.staging.json"
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS_2 }}
   STORAGE_ACCOUNT_NAME: bootcampbstorageaccprod2
-  DICTIONARY_BLOB_CONTAINER_NAME: dictionaryblobcontainer
+  DICTIONARY_BLOB_CONTAINER_NAME: utilblobcontainer
 
 
 jobs:
@@ -50,9 +50,9 @@ jobs:
           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
           --parameters ${{ env.RESOURCES_PARAMS_PATH }}
 
-      - name: Add Dictionaries to Blob Storage
+      - name: Add Util Files to Blob Storage
         run: |
-        skillDictionaryFilePath="./dictionaries/skills_dict.json"
+        skillDictionaryFilePath="./utils/skills_dict.json"
 
           az storage blob upload \
           --file $skillDictionaryFilePath \
