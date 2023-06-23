@@ -68,10 +68,10 @@ jobs:
       
       - name: Add Util Files to Blob Storage
         run: |
-        skillDictionaryFilePath="./utils/skills_dict.json"
+          skillDictionaryFilePath="./utils/skills_dict.json"
 
-          az storage blob upload \
-          --file $skillDictionaryFilePath \
-          --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
-          --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
-          --auth-mode login
+            az storage blob upload \
+            --file $skillDictionaryFilePath \
+            --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
+            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
+            --auth-mode login
