@@ -10,6 +10,9 @@ env:
   RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.prod.json"
   RESOURCES_PARAMS_PATH: "./az.resources.params.prod.json"
   KEY_VAULT_NAME: bootcampbkeyvaultprod
+  STORAGE_ACCOUNT_NAME: bootcampbstorageaccprod2
+  UTIL_BLOB_CONTAINER_NAME: utilblobcontainer
+
 
 jobs:
   deploy:
@@ -62,3 +65,13 @@ jobs:
           --name adzunaAppId \
           --vault-name ${{ env.KEY_VAULT_NAME }} \
           --value ${{secrets.ADZUNA_APP_ID}} \
+      
+      - name: Add Util Files to Blob Storage
+        run: |
+          skillDictionaryFilePath="./utils/skills_dict.json"
+
+            az storage blob upload \
+            --file $skillDictionaryFilePath \
+            --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
+            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
+            --auth-mode login

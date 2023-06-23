@@ -14,6 +14,9 @@
     "BlobContainer2": {
       "type": "string"
     },
+    "BlobContainer3": {
+      "type": "string"
+    },
     "FAInsightsName": {
       "type": "string"
     },
@@ -135,6 +138,15 @@
       }
     },
     {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2018-03-01-preview",
+      "name": "[concat(parameters('StorageAccountName'),'/default/', parameters('BlobContainer3'))]",
+      "dependsOn": ["[parameters('StorageAccountName')]"],
+      "properties": {
+        "publicAccess": "Container"
+      }
+    },
+    {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
       "name": "[parameters('FAInsightsName')]",
@@ -224,6 +236,10 @@
               "value": "[parameters('BlobContainer2')]"
             },
             {
+              "name": "BlobContainer3",
+              "value": "[parameters('BlobContainer3')]"
+            },
+            {
               "name": "KeyVaultName",
               "value": "[parameters('KeyVaultName')]"
             }
@@ -294,6 +310,10 @@
             {
               "name": "BlobContainer2",
               "value": "[parameters('BlobContainer2')]"
+            },
+            {
+              "name": "BlobContainer3",
+              "value": "[parameters('BlobContainer3')]"
             },
             {
               "name": "KeyVaultName",
