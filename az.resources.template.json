@@ -236,6 +236,10 @@
               "value": "[parameters('BlobContainer2')]"
             },
             {
+              "name": "BlobContainer3",
+              "value": "[parameters('BlobContainer3')]"
+            },
+            {
               "name": "KeyVaultName",
               "value": "[parameters('KeyVaultName')]"
             }
@@ -306,6 +310,10 @@
             {
               "name": "BlobContainer2",
               "value": "[parameters('BlobContainer2')]"
+            },
+            {
+              "name": "BlobContainer3",
+              "value": "[parameters('BlobContainer3')]"
             },
             {
               "name": "KeyVaultName",
