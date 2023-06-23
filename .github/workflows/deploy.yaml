@@ -10,6 +10,8 @@ env:
   RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.staging.json"
   RESOURCES_PARAMS_PATH: "./az.resources.params.staging.json"
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS_2 }}
+  STORAGE_ACCOUNT_NAME: bootcampbstorageaccprod2
+  DICTIONARY_BLOB_CONTAINER_NAME: dictionaryblobcontainer
 
 
 jobs:
@@ -47,3 +49,15 @@ jobs:
           --template-file $templateFile \
           --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
           --parameters ${{ env.RESOURCES_PARAMS_PATH }}
+
+      - name: Add Dictionaries to Blob Storage
+        run: |
+        skillDictionaryFilePath="./dictionaries/skills_dict.json"
+
+          az storage blob upload \
+          --file $skillDictionaryFilePath \
+          --container-name ${{ env.DICTIONARY_BLOB_CONTAINER_NAME }} \
+          --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
+          --auth-mode login
+
+# check workflow has write access to blob storage
