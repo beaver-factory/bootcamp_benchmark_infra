@@ -59,5 +59,3 @@ jobs:
             --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
             --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
             --auth-mode login
-
-# check workflow has write access to blob storage
