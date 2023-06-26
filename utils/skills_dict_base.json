@@ -58,6 +58,7 @@
   "IntelliJ IDEA": ["intellij"],
   "Jasmine": ["jasmine"],
   "Java": ["java"],
+  "Javascript": ["javascript", "js"],
   "Jenkins": ["jenkins"],
   "Jira": ["jira"],
   "jQuery": ["jquery"],
