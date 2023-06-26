@@ -57,5 +57,4 @@ jobs:
             az storage blob upload \
             --file $skillDictionaryFilePath \
             --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
-            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
-            --auth-mode login
+            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} 
