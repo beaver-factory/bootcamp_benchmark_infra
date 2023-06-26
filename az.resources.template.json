@@ -384,8 +384,16 @@
               "value": "[parameters('ResourceGroupName')]"
             },
             {
+              "name": "BlobContainer1",
+              "value": "[parameters('BlobContainer1')]"
+            },
+            {
               "name": "BlobContainer2",
               "value": "[parameters('BlobContainer2')]"
+            },
+            {
+              "name": "BlobContainer3",
+              "value": "[parameters('BlobContainer3')]"
             },
             {
               "name": "KeyVaultName",
