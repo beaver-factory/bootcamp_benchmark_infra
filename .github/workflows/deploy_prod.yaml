@@ -12,6 +12,8 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
   TF_VARS_FILE_NAME: az.variables_prod.tfvars
+  TF_VAR_admin_password: ${{ secrets.PSQL_ADMIN_PASSWORD }}
+  TF_VAR_exception_action_group_service_uri: ${{ secrets.EXCEPTION_ALERT_URI }}
 
 
 jobs:

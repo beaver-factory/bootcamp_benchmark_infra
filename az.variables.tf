@@ -97,8 +97,8 @@ variable "admin_login" {
 }
 
 variable "admin_password" {
-  type    = string
-  default = "secret_password123"
+  type      = string
+  sensitive = true
 }
 
 variable "postgres_server_name" {
@@ -175,8 +175,8 @@ variable "exception_action_group_webhook_name" {
 }
 
 variable "exception_action_group_service_uri" {
-  type    = string
-  default = "https://prod-27.uksouth.logic.azure.com:443/workflows/b61f03a573534af9b9702cf50161bc25/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KDBfTIaGGu-z17_LmQQeQNW9etMVxcPIFGTbs4xD0_o"
+  type      = string
+  sensitive = true
 }
 
 variable "exception_action_group_alert_schema" {
