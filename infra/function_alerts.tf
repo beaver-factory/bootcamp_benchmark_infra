@@ -22,7 +22,19 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "query_rules" {
   data_source_id                = azurerm_application_insights.fa_insights.id
   frequency  = var.exception_alert_frequency
   time_window           = var.exception_alert_time_window
-  query            = "union traces | union exceptions | where timestamp > ago(15m) | where operation_Name != '' | where type != '' | order by timestamp asc | project timestamp, message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])), logLevel = 'Error', operation_Name, type"
+  query            = <<EOT
+    union traces
+    | union exceptions
+    | where timestamp > ago(15m)
+    | where operation_Name != ''
+    | where type != ''
+    | order by timestamp asc
+    | project timestamp,
+      message = iff(message != '', message, iff(innermostMessage != '', innermostMessage, customDimensions.['prop__{OriginalFormat}'])),
+      logLevel = 'Error',
+      operation_Name,
+      type
+    EOT
   location = "ukwest"
 
   trigger {
