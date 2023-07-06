@@ -1,4 +1,4 @@
-name: Staging Infra Deployment Workflow
+name: Infra Terraform Deployment Workflow
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
       - main
 
 env:
-  RESOURCE_GROUP_NAME: alexBootcampBenchmarkStaging
-  RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.staging.json"
-  RESOURCES_PARAMS_PATH: "./az.resources.params.staging.json"
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS_2 }}
-  STORAGE_ACCOUNT_NAME: bootcampbstorageaccstag2
-  UTIL_BLOB_CONTAINER_NAME: utilblobcontainer
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  TF_VARS_FILE_NAME: stag.tfvars
 
 
 jobs:
-  DeployResources:
+  DeployResourceGroupAndResources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,36 +26,26 @@ jobs:
         with:
           creds: ${{ env.AZURE_CREDENTIALS }}
 
-      - name: Deploy Resource Group
+      - name: Initialise Terraform
         run: |
-          deploymentName="resource_group_${{github.sha}}"
+          terraform init
 
-          templateFile="./az.resourcegroup.template.json"
-
-          az deployment sub create \
-          --name $deploymentName \
-          --template-file $templateFile \
-          --location ukwest \
-          --parameters ${{ env.RESOURCE_GROUP_PARAMS_PATH }}
-
-      - name: Deploy Resources
+      - name: Create Terraform Plan
         run: |
-          deploymentName="resources_deployment_${{github.sha}}"
+          terraform plan -var-file=${{ env.TF_VARS_FILE_NAME }} -out=main.tfplan
 
-          templateFile="./az.resources.template.json"
-
-          az deployment group create \
-          --name $deploymentName \
-          --template-file $templateFile \
-          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
-          --parameters ${{ env.RESOURCES_PARAMS_PATH }}
+      - name: Apply Terraform Plan
+        run: |
+          terraform apply -var-file=${{ env.TF_VARS_FILE_NAME }} -auto-approve main.tfplan
 
       - name: Add Util Files to Blob Storage
         run: |
+          storageAccountName=$(terraform output storageaccountname)
+          utilStorageContainerName=$(terraform output utilstoragecontainername)
           skillDictionaryFilePath="./utils/skills_dict.json"
 
-            az storage blob upload \
-            --file $skillDictionaryFilePath \
-            --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
-            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
-            --overwrite
+          az storage blob upload \
+          --file $skillDictionaryFilePath \
+          --container-name $utilStorageContainerName \
+          --account-name  $storageAccountNames\
+          --overwrite

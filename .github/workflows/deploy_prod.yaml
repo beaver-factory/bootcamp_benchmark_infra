@@ -6,72 +6,46 @@ on:
       - "v*.*.*"
 
 env:
-  RESOURCE_GROUP_NAME: bootcampBenchmarkProduction
-  RESOURCE_GROUP_PARAMS_PATH: "./az.resourcegroup.params.prod.json"
-  RESOURCES_PARAMS_PATH: "./az.resources.params.prod.json"
-  KEY_VAULT_NAME: bootcampbkeyvaultprod
-  STORAGE_ACCOUNT_NAME: bootcampbstorageaccprod2
-  UTIL_BLOB_CONTAINER_NAME: utilblobcontainer
+  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS_2 }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  TF_VARS_FILE_NAME: prod.tfvars
 
 
 jobs:
-  deploy:
+  DeployResourceGroupAndResources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ env.AZURE_CREDENTIALS }}
 
-      - name: Read version from tag
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-
-      - name: Deploy Resource Group
+      - name: Initialise Terraform
         run: |
-          deploymentName="resource_group_${{ steps.get_version.outputs.VERSION }}"
+          terraform init
 
-          templateFile="./az.resourcegroup.template.json"
-
-          az deployment sub create \
-          --name $deploymentName \
-          --template-file $templateFile \
-          --location ukwest \
-          --parameters ${{ env.RESOURCE_GROUP_PARAMS_PATH }}
-
-      - name: Deploy Resources
+      - name: Create Terraform Plan
         run: |
-          deploymentName="resources_${{ steps.get_version.outputs.VERSION }}"
+          terraform plan -var-file=${{ env.TF_VARS_FILE_NAME }} -out=main.tfplan
 
-          templateFile="./az.resources.template.json"
-
-          az deployment group create \
-          --name $deploymentName \
-          --template-file $templateFile \
-          --resource-group ${{ env.RESOURCE_GROUP_NAME }} \
-          --parameters ${{ env.RESOURCES_PARAMS_PATH }}
-
-      - name: Deploy Secrets to Key Vault
+      - name: Apply Terraform Plan
         run: |
-          az keyvault secret set \
-          --name adzunaAppKey \
-          --vault-name ${{ env.KEY_VAULT_NAME }} \
-          --value ${{secrets.ADZUNA_APP_KEY}} \
+          terraform apply -var-file=${{ env.TF_VARS_FILE_NAME }} -auto-approve main.tfplan
 
-          az keyvault secret set \
-          --name adzunaAppId \
-          --vault-name ${{ env.KEY_VAULT_NAME }} \
-          --value ${{secrets.ADZUNA_APP_ID}} \
-      
       - name: Add Util Files to Blob Storage
         run: |
+          storageAccountName=$(terraform output storageaccountname)
+          utilStorageContainerName=$(terraform output utilstoragecontainername)
           skillDictionaryFilePath="./utils/skills_dict.json"
 
-            az storage blob upload \
-            --file $skillDictionaryFilePath \
-            --container-name ${{ env.UTIL_BLOB_CONTAINER_NAME }} \
-            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
-            --auth-mode login
+          az storage blob upload \
+          --file $skillDictionaryFilePath \
+          --container-name $utilStorageContainerName \
+          --account-name $storageAccountName  \
+          --overwrite
