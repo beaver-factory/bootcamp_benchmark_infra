@@ -61,4 +61,6 @@ provider \"azurerm\" {
 
 terraform init
 
+terraform fmt -recursive
+
 echo "✅ azure resources for terraform backend successfully deployed and main.tf created with relevant creds"
