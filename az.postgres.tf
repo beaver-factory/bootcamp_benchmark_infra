@@ -9,6 +9,7 @@ resource "azurerm_postgresql_server" "postgres_server" {
   create_mode                   = "Default"
   public_network_access_enabled = true
   ssl_enforcement_enabled       = false
+  ssl_minimal_tls_version_enforced = "TLSEnforcementDisabled"
 
   storage_mb                   = 5120
   backup_retention_days        = 7

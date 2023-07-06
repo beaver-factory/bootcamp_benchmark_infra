@@ -27,6 +27,7 @@ resource "azurerm_linux_function_app" "collectors" {
     }
 
     application_insights_key = azurerm_application_insights.fa_insights.instrumentation_key
+    application_insights_connection_string = azurerm_application_insights.fa_insights.connection_string
   }
 
   app_settings = {

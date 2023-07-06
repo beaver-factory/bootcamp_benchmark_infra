@@ -3,6 +3,7 @@ resource "azurerm_monitor_action_group" "action_group" {
   resource_group_name = var.resource_group_name
   short_name          = var.exception_action_group_short_name
   enabled             = true
+  depends_on = [ azurerm_resource_group.rg ]
 
   webhook_receiver {
     name                    = var.exception_action_group_webhook_name
