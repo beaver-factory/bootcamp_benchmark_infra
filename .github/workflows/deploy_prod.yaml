@@ -36,7 +36,7 @@ jobs:
 
       - name: Apply Terraform Plan
         run: |
-          terraform apply -var-file=${{ env.TF_VARS_FILE_NAME }} -auto-approve main.tfplan
+          terraform apply -auto-approve main.tfplan
 
       - name: Add Util Files to Blob Storage
         run: |
