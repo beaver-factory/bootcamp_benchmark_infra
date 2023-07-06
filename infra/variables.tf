@@ -7,7 +7,7 @@ variable "resource_group_name" {
 # STORAGE
 variable "storage_account_name" {
   type    = string
-  default = "bootcampbstorageaccstagtf"
+  default = "bootcampbstorageaccstag3"
 }
 
 variable "blob_container1" {
@@ -28,12 +28,12 @@ variable "blob_container3" {
 # MISC
 variable "fa_insights_name" {
   type    = string
-  default = "bb-insights-stagtf"
+  default = "bb-insights-stag3"
 }
 
 variable "fa_server_farm_name" {
   type    = string
-  default = "bb-serverfarm-stagtf"
+  default = "bb-serverfarm-stag3"
 }
 
 variable "sku_name" {
@@ -54,23 +54,23 @@ variable "dev_group_obj_id" {
 # FUNCTION APPS
 variable "collectors_fa_name" {
   type    = string
-  default = "bb-collectors-stagtf"
+  default = "bb-collectors-stag3"
 }
 
 variable "processors_fa_name" {
   type    = string
-  default = "bb-processors-stagtf"
+  default = "bb-processors-stag3"
 }
 
 variable "loaders_fa_name" {
   type    = string
-  default = "bb-loaders-stagtf"
+  default = "bb-loaders-stag3"
 }
 
 # KEYVAULT
 variable "keyvault_name" {
   type    = string
-  default = "bootcampbkeyvaultstagtf"
+  default = "bootcampbkeyvaultstag3"
 }
 
 variable "key_vault_enabled_for_deployment" {
@@ -103,7 +103,7 @@ variable "admin_password" {
 
 variable "postgres_server_name" {
   type    = string
-  default = "bootcampbpsqlserverstagtf"
+  default = "bootcampbpsqlserverstag3"
 }
 
 variable "postgres_db_name" {
@@ -115,7 +115,7 @@ variable "postgres_db_name" {
 
 variable "exception_alert_name" {
   type    = string
-  default = "bb-exceptionAlert-stagtf"
+  default = "bb-exceptionAlert-stag3"
 }
 
 variable "exception_alert_description" {
@@ -160,12 +160,12 @@ variable "exception_alert_time_agg" {
 
 variable "exception_action_group_name" {
   type    = string
-  default = "bb-exceptionAlertsGroup-stagtf"
+  default = "bb-exceptionAlertsGroup-stag3"
 }
 
 variable "exception_action_group_short_name" {
   type    = string
-  default = "bb-eag-stagtf"
+  default = "bb-eag-stag3"
 }
 
 variable "exception_action_group_webhook_name" {
