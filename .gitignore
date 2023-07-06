@@ -1,4 +1,5 @@
 creds.json
 profile.txt
-.terraform*
-.env
+*.env
+*.terraform*
+__azurite_*
