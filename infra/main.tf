@@ -32,7 +32,7 @@ resource "azurerm_application_insights" "fa_insights" {
   application_type    = "web"
 }
 
-resource "azurerm_service_plan" "fasp" {
+resource "azurerm_service_plan" "service_plan" {
   name                = var.fa_server_farm_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name

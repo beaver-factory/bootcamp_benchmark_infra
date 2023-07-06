@@ -4,11 +4,11 @@ resource "azurerm_linux_function_app" "collectors" {
   resource_group_name        = var.resource_group_name
   storage_account_name       = azurerm_storage_account.storage_acc.name
   storage_account_access_key = azurerm_storage_account.storage_acc.primary_access_key
-  service_plan_id            = azurerm_service_plan.fasp.id
+  service_plan_id            = azurerm_service_plan.service_plan.id
 
   depends_on = [
     azurerm_application_insights.fa_insights,
-    azurerm_service_plan.fasp,
+    azurerm_service_plan.service_plan,
     azurerm_storage_account.storage_acc,
   ]
 
