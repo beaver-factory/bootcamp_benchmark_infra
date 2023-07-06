@@ -7,9 +7,12 @@ In order to create your own deployed resource group and resources, follow these 
 1. Create a free Azure account,
 2. Add users and assign users to a group for ease of permissions granting,
 3. Install AZ CLI tools and log in by running `az login`,
-4. Create a service principal by following the steps in 'Adding Secrets to GitHub' and check secrets are in gh repo,
-5. Create a version of `az.resourcegroup.params.staging.json`, changing the name of the resource group,
-6. Create a version of `az.resources.params.staging.json`, again changing all of the parameter values,
+4. Create a backend to hold the terraform state by running `make setup_tf_backend`
+
+   - this will deploy infrastructure to seperate resource group in Azure that is responsible for holding the terraform state for the Bootcamp Benchmark project.
+   - it will also create a `main.tf` that will hold the required config to connect to this backend.
+
+TO BE REVIEWED: 4. Create a service principal by following the steps in 'Adding Secrets to GitHub' and check secrets are in gh repo,
 
 - Resource Names often have to be globally unique,
 - `AppRegistrationSPObjectID` should be taken from the portal, note: this is the App Registration Service Principal Object ID and not the App Registration Object ID.
