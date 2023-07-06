@@ -1,13 +1,13 @@
 # RESOURCE GROUP
 variable "resource_group_name" {
   type    = string
-  default = "alexBootcampBenchmarkStaging"
+  default = "TFBootcampBenchmarkStaging"
 }
 
 # STORAGE
 variable "storage_account_name" {
   type    = string
-  default = "bootcampbstorageaccstag2"
+  default = "bootcampbstorageaccstagtf"
 }
 
 variable "blob_container1" {
@@ -28,12 +28,12 @@ variable "blob_container3" {
 # MISC
 variable "fa_insights_name" {
   type    = string
-  default = "bb-insights-stag2"
+  default = "bb-insights-stagtf"
 }
 
 variable "fa_server_farm_name" {
   type    = string
-  default = "bb-serverfarm-stag2"
+  default = "bb-serverfarm-stagtf"
 }
 
 variable "sku_name" {
@@ -54,23 +54,23 @@ variable "dev_group_obj_id" {
 # FUNCTION APPS
 variable "collectors_fa_name" {
   type    = string
-  default = "bb-collectors-stag2"
+  default = "bb-collectors-stagtf"
 }
 
 variable "processors_fa_name" {
   type    = string
-  default = "bb-processors-stag2"
+  default = "bb-processors-stagtf"
 }
 
 variable "loaders_fa_name" {
   type    = string
-  default = "bb-loaders-stag2"
+  default = "bb-loaders-stagtf"
 }
 
 # KEYVAULT
 variable "keyvault_name" {
   type    = string
-  default = "bootcampbkeyvaultstag2"
+  default = "bootcampbkeyvaultstagtf"
 }
 
 variable "key_vault_enabled_for_deployment" {
@@ -103,7 +103,7 @@ variable "admin_password" {
 
 variable "postgres_server_name" {
   type    = string
-  default = "bootcampbpsqlserverstag2"
+  default = "bootcampbpsqlserverstagtf"
 }
 
 variable "postgres_db_name" {
@@ -115,7 +115,7 @@ variable "postgres_db_name" {
 
 variable "exception_alert_name" {
   type    = string
-  default = "bb-exceptionAlert-stag2"
+  default = "bb-exceptionAlert-stagtf"
 }
 
 variable "exception_alert_description" {
@@ -160,12 +160,12 @@ variable "exception_alert_time_agg" {
 
 variable "exception_action_group_name" {
   type    = string
-  default = "bb-exceptionAlertsGroup-stag2"
+  default = "bb-exceptionAlertsGroup-stagtf"
 }
 
 variable "exception_action_group_short_name" {
   type    = string
-  default = "bb-eag-stag2"
+  default = "bb-eag-stagtf"
 }
 
 variable "exception_action_group_webhook_name" {
