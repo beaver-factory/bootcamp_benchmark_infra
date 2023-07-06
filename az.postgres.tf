@@ -21,7 +21,7 @@ resource "azurerm_postgresql_database" "postgres_db" {
   server_name         = azurerm_postgresql_server.postgres_server.name
   resource_group_name = azurerm_resource_group.rg.name
   depends_on          = [azurerm_postgresql_server.postgres_server]
-  collation           = "en_US.UTF8"
+  collation           = "en-US"
   charset             = "UTF8"
 }
 
