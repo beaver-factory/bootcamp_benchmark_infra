@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name = "bootcampBenchmarkTerraform"
+    resource_group_name  = "bootcampBenchmarkTerraform"
     storage_account_name = "bbtfstorage"
-    container_name = "bbtfcontainer"
+    container_name       = "bbtfcontainer"
     # key is the name of the file in the blob container
     key = "terraform.tfstate"
   }

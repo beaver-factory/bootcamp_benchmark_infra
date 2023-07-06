@@ -40,3 +40,8 @@ resource "azurerm_linux_function_app" "collectors" {
     "KeyVaultName"                             = var.keyvault_name
   }
 }
+
+data "azurerm_linux_function_app" "collectors" {
+  name                = var.collectors_fa_name
+  resource_group_name = azurerm_resource_group.rg.name
+}

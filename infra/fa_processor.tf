@@ -42,17 +42,10 @@ resource "azurerm_linux_function_app" "processors" {
   }
 }
 
-data "azurerm_linux_function_app" "collectors" {
-  name                = var.collectors_fa_name
-  resource_group_name = azurerm_resource_group.rg.name
-}
+
 
 data "azurerm_linux_function_app" "processors" {
   name                = var.processors_fa_name
   resource_group_name = azurerm_resource_group.rg.name
 }
 
-data "azurerm_linux_function_app" "loaders" {
-  name                = var.loaders_fa_name
-  resource_group_name = azurerm_resource_group.rg.name
-}

@@ -42,3 +42,8 @@ resource "azurerm_linux_function_app" "loaders" {
   }
 
 }
+
+data "azurerm_linux_function_app" "loaders" {
+  name                = var.loaders_fa_name
+  resource_group_name = azurerm_resource_group.rg.name
+}
