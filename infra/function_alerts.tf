@@ -35,7 +35,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "query_rules" {
       operation_Name,
       type
     EOT
-  location       = "ukwest"
+  location       = azurerm_resource_group.rg.location
 
   trigger {
     operator  = var.exception_alert_operator
