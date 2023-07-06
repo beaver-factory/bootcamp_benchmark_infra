@@ -57,7 +57,7 @@ echo -e "terraform {
 
 provider \"azurerm\" {
   features {}
-}" > main.tf
+}" > az.main.tf
 
 terraform init
 

@@ -1,7 +1,7 @@
 output "storageaccountname" {
-  value = "update me to be storage acc name"
+  value = azurerm_storage_account.storage_acc.name
 }
 
 output "utilstoragecontainername" {
-  value = "update me to be util container name"
+  value = azurerm_storage_container.container3.name
 }

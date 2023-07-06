@@ -11,18 +11,22 @@ resource "azurerm_storage_account" "storage_acc" {
   }
 }
 
+
+# Raw blob container:
 resource "azurerm_storage_container" "container1" {
   name                  = var.blob_container1
   storage_account_name  = azurerm_storage_account.storage_acc.name
   container_access_type = "blob"
 }
 
+# Processed blob container:
 resource "azurerm_storage_container" "container2" {
   name                  = var.blob_container2
   storage_account_name  = azurerm_storage_account.storage_acc.name
   container_access_type = "blob"
 }
 
+# Util blob container:
 resource "azurerm_storage_container" "container3" {
   name                  = var.blob_container3
   storage_account_name  = azurerm_storage_account.storage_acc.name

@@ -47,5 +47,5 @@ jobs:
           az storage blob upload \
           --file $skillDictionaryFilePath \
           --container-name $utilStorageContainerName \
-          --account-name  $storageAccountNames\
+          --account-name  $storageAccountName \
           --overwrite
