@@ -10,3 +10,6 @@ ifdef v
 else
 	$(error TAG_VERSION is undefined)
 endif
+
+setup_tf_backend:
+	bash script/setup_tf_backend.sh
