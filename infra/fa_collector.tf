@@ -23,8 +23,6 @@ resource "azurerm_linux_function_app" "collectors" {
     cors {
       allowed_origins = ["https://portal.azure.com"]
     }
-    # application_insights_connection_string = azurerm_application_insights.fa_insights.connection_string
-    # application_insights_key               = azurerm_application_insights.fa_insights.instrumentation_key
   }
     app_settings = {
       "AzureWebJobsDashboard"                    = "DefaultEndpointsProtocol=https;AccountName=${var.storage_account_name};AccountKey=${azurerm_storage_account.storage_acc.primary_access_key}"
