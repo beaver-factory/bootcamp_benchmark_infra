@@ -34,7 +34,7 @@ resource "azurerm_service_plan" "fasp" {
   os_type             = "Linux"
   sku_name            = "Y1"
 
-  
+
 }
 
 data "azurerm_client_config" "current" {}
