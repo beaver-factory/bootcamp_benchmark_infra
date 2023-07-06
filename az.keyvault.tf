@@ -17,7 +17,7 @@ resource "azurerm_key_vault" "keyvault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
 
     secret_permissions = [
-      "set"
+      "Set"
     ]
   }
 
@@ -27,8 +27,8 @@ resource "azurerm_key_vault" "keyvault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
 
     secret_permissions = [
-      "list",
-      "get"
+      "List",
+      "Get"
     ]
   }
 
@@ -38,7 +38,7 @@ resource "azurerm_key_vault" "keyvault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
 
     secret_permissions = [
-      "get"
+      "Get"
     ]
   }
 
@@ -48,7 +48,7 @@ resource "azurerm_key_vault" "keyvault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
 
     secret_permissions = [
-      "get"
+      "Get"
     ]
   }
 
@@ -58,7 +58,7 @@ resource "azurerm_key_vault" "keyvault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
 
     secret_permissions = [
-      "get"
+      "Get"
     ]
   }
 
