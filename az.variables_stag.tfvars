@@ -55,7 +55,6 @@ key_vault_enabled_for_template_deployment = false
 # POSTGRES
 admin_login = "bootcampb_admin"
 
-admin_password = "secret_password123"
 
 postgres_server_name = "bootcampbpsqlserverstag3"
 
@@ -88,7 +87,6 @@ exception_action_group_short_name = "bb-eag-stag3"
 exception_action_group_webhook_name = "powerAutomateEmailAlert"
 
 
-exception_action_group_service_uri = "https://prod-27.uksouth.logic.azure.com:443/workflows/b61f03a573534af9b9702cf50161bc25/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KDBfTIaGGu-z17_LmQQeQNW9etMVxcPIFGTbs4xD0_o"
 
 exception_action_group_alert_schema = true
 
