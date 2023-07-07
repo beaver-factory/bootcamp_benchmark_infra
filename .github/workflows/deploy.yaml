@@ -42,8 +42,8 @@ jobs:
 
       - name: Add Util Files to Blob Storage
         run: |
-          storageAccountName=$(terraform output storageaccountname)
-          utilStorageContainerName=$(terraform output utilstoragecontainername)
+          storageAccountName=$(terraform output -raw storageaccountname)
+          utilStorageContainerName=$(terraform output -raw utilstoragecontainername)
           skillDictionaryFilePath="./utils/skills_dict.json"
 
           az storage blob upload \
