@@ -41,6 +41,9 @@ resource "azurerm_linux_function_app" "loaders" {
     "KeyVaultName"                             = var.keyvault_name
   }
 
+  lifecycle {
+    ignore_changes = [ tags ]
+  }
 }
 
 data "azurerm_linux_function_app" "loaders" {

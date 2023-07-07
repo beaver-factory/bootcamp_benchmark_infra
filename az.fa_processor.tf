@@ -39,6 +39,10 @@ resource "azurerm_linux_function_app" "processors" {
     "BlobContainer3"                           = var.blob_container3
     "KeyVaultName"                             = var.keyvault_name
   }
+
+  lifecycle {
+    ignore_changes = [ tags ]
+  }
 }
 
 
