@@ -71,6 +71,6 @@ Finally, check the `GH_INFRA_REPO` and `GH_FUNC_REPO` variables in `set_az_cred.
 
 ## Alerts
 
-Alerts and Action groups have most of their settings defined in the params file, however the query for the log alert is set in the `az.function_alerts.tf` file, to take advantage of azures multi-line string capability. This is not currently available in the params file.
+Alerts and Action groups have most of their settings defined in the variables files, however the query for the log alert is set in the `az.function_alerts.tf` file, to take advantage of terraform's multi-line string capability.
 
 The current setup for the alert is a 15 minute window (param: `"ExceptionAlertTimeWindow"`) checked every 15 minutes (param: `"ExceptionAlertFrequency"`). If an alert occurs, it will not trigger again for another 15 minutes (param: `"ExceptionAlertMuteDuration"`).
