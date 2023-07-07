@@ -44,7 +44,6 @@ resource "azurerm_linux_function_app" "loaders" {
   lifecycle {
     ignore_changes = [ tags ]
   }
-
 }
 
 data "azurerm_linux_function_app" "loaders" {
