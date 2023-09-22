@@ -1,0 +1,111 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ResourceGroupName": {
+      "value": "depBootcampBenchmarkStaging"
+    },
+    "StorageAccountName": {
+      "value": "bootcampbstorageaccstag"
+    },
+    "BlobContainer1": {
+      "value": "rawblobcontainer"
+    },
+    "BlobContainer2": {
+      "value": "processedblobcontainer"
+    },
+    "BlobContainer3": {
+      "value": "utilblobcontainer"
+    },
+    "FAInsightsName": {
+      "value": "bb-insights-stag"
+    },
+    "FAServerFarmName": {
+      "value": "bb-serverfarm-stag"
+    },
+    "CollectorsFAName": {
+      "value": "bb-collectors-stag"
+    },
+    "ProcessorsFAName": {
+      "value": "bb-processors-stag"
+    },
+    "LoadersFAName": {
+      "value": "bb-loaders-stag"
+    },
+    "adminLogin": {
+      "value": "bootcampb_admin"
+    },
+    "adminPassword": {
+      "value": "deprecated_password123"
+    },
+    "PostgresServerName": {
+      "value": "deprecatedserverstag"
+    },
+    "PostgresDBName": {
+      "value": "bootcampbpsqldbstag"
+    },
+    "KeyVaultName": {
+      "value": "bootcampbkeyvaultstag"
+    },
+    "KeyVaultEnabledForDeployment": {
+      "value": false
+    },
+    "KeyVaultEnabledForDiskEncryption": {
+      "value": false
+    },
+    "KeyVaultEnabledForTemplateDeployment": {
+      "value": false
+    },
+    "SkuName": {
+      "value": "standard"
+    },
+    "AppRegistrationSPObjectID": {
+      "value": "<deprecated_value>"
+    },
+    "DevGroupObjId": {
+      "value": "<deprecated_value>"
+    },
+    "ExceptionAlertName": {
+      "value": "bb-exceptionAlert-stag"
+    },
+    "ExceptionAlertDescription": {
+      "value": "Alerts users when a function fails to run correctly (i.e when an exception is raised)"
+    },
+    "ExceptionAlertSeverity": {
+      "value": 1
+    },
+    "ExceptionAlertFrequency": {
+      "value": "PT15M"
+    },
+    "ExceptionAlertTimeWindow": {
+      "value": "PT15M"
+    },
+    "ExceptionAlertMuteDuration": {
+      "value": "PT15M"
+    },
+    "ExceptionAlertThreshold": {
+      "value": 0
+    },
+    "ExceptionAlertOperator": {
+      "value": "GreaterThan"
+    },
+    "ExceptionAlertTimeAgg": {
+      "value": "Count"
+    },
+    "ExceptionActionGroupName": {
+      "value": "bb-exceptionAlertsGroup-stag"
+    },
+    "ExceptionActionGroupShortName": {
+      "value": "bb-eag-stag"
+    },
+    "ExceptionActionGroupEmails": {
+      "value": [
+        {
+          "name": "powerAutomateEmailAlert",
+          "serviceUri": "<deprecated_value>",
+          "useCommonAlertSchema": true
+        }
+      ]
+    }
+  }
+}
